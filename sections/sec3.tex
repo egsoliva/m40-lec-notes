@@ -233,9 +233,12 @@ e.g. $\displaystyle \bmat{0 & 0 & 0 & 1 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 1 &
 
 e.g. $\displaystyle \bmat{1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & c & 0 \\ 0 & 0 & 0 & 1} = Q_3(c); \hspace{0.2cm} Q_3(c)^{-1} = Q_3\left(\frac{1}{c}\right)$
 
+\newpage
 \underline{\textbf{Type 3}}. We denote the elementary matrix obtained when we add $d$ times row $k$ of $I_n$ to row $\ell$
 
 e.g. $\displaystyle \bmat{1 & d & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1} = R_{21}(d); \hspace{0.2cm} R_{21}(d)^{-1} = R_{21}(-d)$
+
+\lline
 
 \begin{theorem}
 The elementary matrices are nonsingular and their inverses are also elementary.
@@ -275,7 +278,7 @@ E_3 &\implies R_2 \longleftrightarrow R_3 && \text{(or $P_{23}$)}
 \]
 \end{example}
 
-\newpage
+% \newpage
 \begin{example}
 Find $E_3E_2E_1A$ using the matrices from \hyperref[example:3.3]{Example 3.3}.
 \end{example}
@@ -327,7 +330,7 @@ A^{-1} &= Q_2\left(-\frac{1}{2}\right)R_{12}(-3)P_{12} \\
 Recall that $A = E_1^{-1}E_2^{-1}\cdots E_k^{-1}$, thus,
 $$A = \boxed{\bmat{0 & 1 \\ 1 & 0}\bmat{1 & 0 \\ 3 & 1}\bmat{1 & 0 \\ 0 & -2}}$$
 
-\newpage
+% \newpage
 \begin{theorem}
 Let $A \in M_n(\mathbb{R})$. The following statements are equivalent:
 \begin{itemize}
