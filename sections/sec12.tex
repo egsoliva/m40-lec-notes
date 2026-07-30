@@ -105,5 +105,100 @@ Therefore, $T(a, b, c) = (b + c)x^2 + (a + c)x + (a + b)$ for all $a,b,c \in \RR
 Let $U, V$, and $W$ be finite-dimensional vector spaces with respective ordered bases $B_U, B_V$, and $B_W$. If $T: U \to V$ and $S: V \to W$ are linear transformations, then
 \begin{enumerate}
     \item $[S \circ T]_{B_U}^{B_W} = [S]_{B_V}^{B_W}[T]_{B_U}^{B_V}$
+    \item Suppose $\dim U = \dim V$. Then $T$ is an isomorphism iff $[T]_{B_U}^{B_V}$ is a nonsingular square matrix, in which case $[T\inv]_{B_V}^{B_U} = ([T]_{B_U}^{B_V})\inv$.
 \end{enumerate}
+\end{theorem}
+
+\begin{remark}
+$A \in M_n(\RR)$ is nonsingular iff $A$ is the matrix representation of an isomorphism.
+\end{remark}
+
+\begin{definition}
+Let $V$ be an $n$-dimensional vector space, and $B = \{v_1, v_2, \dots, v_n\}$ and $C = \{w_1, w_2, \dots, w_n\}$ be (possibly unequal) ordered bases for $V$. The matrix
+$$[\id_V]_B^C =: P_B^C$$
+is called the \textbf{change-of-basis matrix} or the \textbf{transition matrix} from the basis $B$ to the basis $C$.
+\end{definition}
+
+\begin{remark}
+Let $V$ be an $n$-dimensional vector space, and $B = \{v_1, v_2, \dots, v_n\}$ and $C = \{w_1, w_2, \dots, w_n\}$ be ordered bases for $V$.
+\begin{enumerate}
+    \item To find $P_B^C$, form the augmented matrix
+    $$X = [C \mid B] = \bmat{w_1 & w_2 & \cdots & w_n & \vline & v_1 & v_2 & \cdots & v_n}$$
+    and use elementary row operations to transform $X$ into $[I_n \mid M]$. Then $M = P_B^C$.
+    \item 
+    \begin{enumerate}
+        \item $P_B^B = I_n$ 
+        \item $P_B^C$ is nonsingular with $(P_B^C)\inv = P_C^B$
+        \item If $D$ is another ordered basis for $V$, then $P_C^D P_B^C = P_B^D$
+    \end{enumerate}
+\end{enumerate}
+\end{remark}
+
+\begin{example}
+Let $B = \{(1, 2), (3, 5)\}, C = \{(1, 2), (0, -1)\}$, and $D = \{(1, 1), (2, 3)\}$ be ordered bases for $\RR^2$. Find $P_B^C, P_C^D$, and $P_B^D$.
+
+\textit{Solution.}
+
+\begin{itemize}
+    \item $P_B^C: \bmat{1 & 0 & \vline & 1 & 3 \\ 2 & -1 & \vline & 2 & 5} 
+    \xrightarrow{\text{RREF}} 
+    \bmat{1 & 0 & \vline & 1 & 3 \\ 0 & 1 & \vline & 0 & 1} 
+    \Longrightarrow \boxed{P_B^C = \bmat{1 & 3 \\ 0 & 1}}$
+    \item $P_C^D: \bmat{1 & 2 & \vline & 1 & 0 \\ 1 & 3 & \vline & 2 & -1}
+    \xrightarrow{\text{RREF}}
+    \bmat{1 & 0 & \vline &-1 & 2 \\ 0 & 1 & \vline & 1 & -1}
+    \Longrightarrow \boxed{P_C^D = \bmat{-1 & 2 \\ 1 & -1}}
+    $
+    \item $P_B^D = P_C^D P_B^C = \bmat{-1 & 2 \\ 1 & -1}\bmat{1 & 3 \\ 0 & 1}
+    =\boxed{\bmat{-1 & -1 \\ 1 & 2}}$
+\end{itemize}
+\end{example}
+
+\begin{theorem}
+Let $T: U \to V$ be a linear transformation, $B_U$ and $C_U$ be ordered bases for $U$, and $B_V$ and $C_V$ be ordered bases for $V$. Then
+$$[T]_{C_U}^{C_V} = P_{B_V}^{C_V}[T]_{B_U}^{B_V}(P_{B_U}^{C_U})\inv$$
+\end{theorem}
+
+\begin{definition}
+Let $A, B \in \matmn$. Then $A$ and $B$ are said to be \textbf{equivalent},
+denoted $A \approx B$, if there exists nonsingular matrices $P \in M_n(\RR)$ and 
+$Q \in M_m(\RR)$ such that $B = QAP$.
+\end{definition}
+
+\begin{remark}
+Let $A, B \in \matmn$. Then the following statements are equivalent:
+\begin{enumerate}
+    \item $A \approx B$
+    \item $B$ can be obtained from $A$ by a finite combination of elementary row 
+    and/or column operations.
+    \item $\rank A = \rank B$
+    \item $A$ and $B$ represent the same linear transformation but with respect 
+    to different ordered bases.
+\end{enumerate}
+\end{remark}
+
+\begin{theorem}
+Let $U$ and $V$ be finite-dimensional vector spaces with respective ordered bases 
+$B_U$ and $B_V$, $S, T: U \to V$ be linear transformations, and $c \in \RR$. Then 
+$S + T: U \to V$ and $cT: U \to V$ are both linear transformations. Moreover,
+\begin{align*}
+[S + T]_{B_U}^{B_V} &= [S]_{B_U}^{B_V} + [T]_{B_U}^{B_V} \\
+[cT]_{B_U}^{B_V} &= c[T]_{B_U}^{B_V}
+\end{align*}
+\end{theorem}
+
+\begin{remark}
+Let $U$ and $V$ be vector spaces with respective ordered bases $B_U$ and $B_V$.
+\begin{enumerate}
+    \item The set $\mathcal{L}(U, V)$ consisting of all linear transformations 
+    from $U$ to $V$ is a vector space under the addition and scalar multiplication 
+    of linear transformations.
+    \item The function $M: \mathcal{L}(U, V) \to \matmn$ defined by $M(T) = [T]_{B_U}^{B_V}$ 
+    is a linear transformation. In fact, it is an isomorphism!
+\end{enumerate}
+\end{remark}
+
+\begin{theorem}
+If $U$ and $V$ are vector spaces with $\dim U = n$ and $\dim V = m$, then 
+$\mathcal{L}(U, V) \cong \matmn$.
 \end{theorem}
