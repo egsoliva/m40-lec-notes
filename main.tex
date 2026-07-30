@@ -1,0 +1,98 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{biblatex}
+\usepackage{parskip}
+\usepackage{stmaryrd}
+\usepackage{blindtext}
+\usepackage{amsthm, amsmath, amssymb}
+\usepackage{mathtools}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage{physics}
+\usepackage{tikz}
+\usepackage{nicematrix}
+\usepackage{epigraph}
+\usepackage{enumitem}
+
+\geometry{margin=2.2cm}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\newcommand{\suchthat}{\;\ifnum\currentgrouptype=16 \middle\fi|\;}
+\newcommand\multr{\stackrel{\mathclap{\normalfont\mbox{.}}}{\mathbb{R}}}
+
+\makeatletter
+\newcommand\longleftrightarrowfill@{%
+  \arrowfill@\leftarrow\relbar\rightarrow}
+\makeatother
+
+% 1. Macro for bracketed matrix [] -> \bmat{...}
+\newcommand{\bmat}[1]{\begin{bmatrix} #1 \end{bmatrix}}
+
+% 2. Macro for single vertical bar matrix || -> \vmat{...}
+\newcommand{\vmat}[1]{\begin{vmatrix} #1 \end{vmatrix}}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\ZZ}{\mathbb{Z}}
+
+\newcommand{\adj}{\operatorname{adj}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\inv}{^{-1}}
+% \newcommand{\rank}{\operatorname{rank}}
+\newcommand{\matmn}{M_{m \times n}(\RR)}
+% \newcommand{\ker}{\operatorname{ker}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\spn}{\operatorname{span}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\tpse}{^{\mathsf{T}}}
+
+\newcommand{\ul}{\underline}
+\newcommand{\lline}{\noindent\rule{\textwidth}{0.4pt}}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{problem}{Problem}[subsection]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{exercs}{Exercise}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{fact}{Fact}[section]
+\newenvironment{amatrix}[1]{%
+  \left[\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right]
+}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+    pdftitle={Math 40 Notes},
+    }
+
+% \setlength{\droptitle}{-1.0cm} % move title up
+\title{\textbf{Math 40 Notes}}
+\author{\texttt{elsoliva@up.edu.ph}}
+\date{}
+
+\begin{document}
+\maketitle
+\input{sections/sec1}
+\input{sections/sec2}
+\input{sections/sec3}
+\input{sections/sec4}
+\input{sections/sec5}
+\input{sections/sec6}
+\input{sections/sec7}
+\input{sections/sec8}
+\input{sections/sec9}
+\input{sections/sec10}
+\input{sections/sec11}
+\input{sections/sec12}
+\input{sections/sec13}
+\input{sections/sec14}
+
+\end{document}
