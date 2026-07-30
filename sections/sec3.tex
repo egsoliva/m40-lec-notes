@@ -309,15 +309,15 @@ $A \in M_n(\mathbb{R})$ is nonsingular iff:
 \end{remark}
 
 \begin{example}
-Let $A = \bmat{ 3 & -2 \\ 1 & 0}$. Write $A$ and $A^{-1}$ as products of elementary matrices.
+Let $A = \bmat{ 3 & -2 \\ 1 & 0}$. Write $A$ and $A\inv$ as products of elementary matrices.
 \end{example}
 
 \textit{Solution.} Let us first reduce $A$ into the identity matrix and then identify the EROs used,
 \begin{align*}
 \bmat{3 & -2 \\ 1 & 0} \xrightarrow{R_1 \leftrightarrow R_2}
-\bmat{1 & 0 \\ 3 & -2} \xrightarrow{R_2 \to R_3 - 3R_2}
+\bmat{1 & 0 \\ 3 & -2} \xrightarrow{R_2 \leftarrow R_3 - 3R_2}
 \bmat{1 & 0 \\ 0 & -2} \\
-\bmat{1 & 0 \\ 0 & -2} \xrightarrow{R_2 \to -1/2R_2} \bmat{1 & 0 \\ 0 & 1} = I_2
+\bmat{1 & 0 \\ 0 & -2} \xrightarrow{R_2 \leftarrow -1/2R_2} \bmat{1 & 0 \\ 0 & 1} = I_2
 \end{align*}
 Then,
 $$I_2 = Q_2\left(-\frac{1}{2}\right)R_{12}(-3)P_{12}A$$
