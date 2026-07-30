@@ -1,0 +1,262 @@
+\newpage
+\section{Inner Product Spaces}
+\begin{definition}
+An inner product on a vector space $V$ is a function $\langle \cdot, \cdot \rangle$ that assigns two vectors $u, v \in V$ to a scalar $\langle u, v \rangle \in \RR$ satisfying the following for all $u, v, w \in V$ and for all $c \in \RR$
+
+IP1. $\langle u, v \rangle = \langle v, u \rangle$ (symmetric)
+
+IP2. $\langle u, u \rangle \geq 0$ (nonnegativity)
+
+IP3. $\langle u, u \rangle = 0$ iff $u = \vec{0}$ (definite)
+
+IP4. $\langle u + v, w \rangle = \langle u, w \rangle + \langle v, w \rangle$  (additive on the first component)
+
+IP5. $\langle cu, w \rangle = c\langle u, w \rangle$ (homogeneous on the first component)
+\end{definition}
+
+\begin{remark}
+A vector space $V$ with an inner product is called an inner product space.\footnote{Also known as a Euclidean space.}
+\end{remark}
+
+\begin{definition}
+Let $V$ be an inner product space and $u, v \in V$
+\begin{enumerate}
+    \item The \textbf{norm/magnitude} of $u$ is $\lVert u \rVert = \sqrt{\langle u, u \rangle}$
+    \item $u$ is called the \textbf{unit vector} if $\lVert u \rVert = 1$
+    \item The \textbf{distance} between $u$ and $v$ is $d(u, v) = \lVert u - v \rVert$
+\end{enumerate}
+\end{definition}
+
+\begin{remark}
+Let $V$ be an inner product space, $u \in V$, $c \in \RR$
+\begin{enumerate}
+    \item $\lVert u \rVert^2 = \langle u, u \rangle$
+    \item $\lVert u \rVert \geq 0$
+    \item $\lVert \vec{0} \rVert = \sqrt{\langle \vec{0}, \vec{0} \rangle} = 0$
+    \item $\lVert u \rVert = 0$ iff $u = \vec{0}$
+    \item $\lVert cu \rVert = \sqrt{\langle cu, cu \rangle} = \lvert c \rvert \lVert u \rVert$
+    \item If $u + \vec{0}$, then $\dfrac{u}{\lVert u \rVert}$ is a unit vector, called the normalization of $u$
+    \item $\lVert u + v \rVert^2 = \langle u + v, u + v \rangle = \langle u, u \rangle + \langle u, v \rangle + \langle v, u \rangle + \langle v, v \rangle =\lVert u \rVert^2 + 2\langle u, v \rangle + \lVert v \rVert^2$ \\
+    $\lVert u - v \rVert^2 = \lVert u \rVert^2 - 2 \langle u, v \rangle + \lVert v \rVert^2$
+\end{enumerate}
+\end{remark}
+
+\begin{theorem}[Cauchy-Schwarz Inequality]
+Let $V$ be an inner product space and $u, v \in V$. Then $\lvert \langle u, v \rangle \rvert \leq \lVert u \rVert \lVert v \rVert$.
+\end{theorem}
+
+\begin{remark}
+Let $u$ and $v$ be nonzero vectors in an inner product space $V$
+\begin{enumerate}
+    \item $$-\lVert u \rVert \lVert v \rVert \leq \langle u, v \rangle \leq \lVert u \rVert \lVert v \rVert$$
+    $$-1 \leq \langle u, v \rangle \leq 1$$
+    \item The angle $\theta$ between $u$ and $v$ is defined as 
+    $$\theta = \cos^{\inv}\left(\frac{\langle u, v \rangle}{\lVert u \rVert \lVert v \rVert}\right)$$
+\end{enumerate}
+\end{remark}
+
+\newpage
+\begin{theorem}[Properties of the Norm]
+Let $V$ be an inner product space, $u, v \in V$, and $c \in \RR$.
+\begin{enumerate}
+    \item $\lVert u \rVert \geq 0$
+    \item $\lVert u \rVert = 0$ iff $u = \vec{0}$
+    \item $\lVert cu \rVert = \lvert c \rvert \lVert u \rVert$
+    \item $\lVert u + v \rVert \leq \lVert u \rVert + \lVert v \rVert$ (Triangle inequality)
+    \begin{proof}
+    Recall that, $\lVert u + v \rVert^2$ can be expressed as $\langle u + v, u + v \rangle$,
+    $$\langle u + v, u + v \rangle = \lVert u \rVert^2 + 2 \lVert u \rVert \lVert v \rVert + \lVert v \rVert^2 \leq (\lVert u \rVert + \lVert v \rVert)^2$$
+    \end{proof} 
+\end{enumerate}
+\end{theorem}
+
+\begin{remark}[Properties of Distance]
+Let $V$ be an inner product space and $u, v, w \in V$. Then
+\begin{enumerate}
+    \item $d(u, v) \geq 0$
+    \item $d(u, v) = 0$ iff $u = v$
+    \item $d(u, v) = d(v, u)$
+    \item $d(u, w) \leq d(u, v) + d(v, w)$
+\end{enumerate}
+\end{remark}
+
+\begin{definition}
+Let $V$ be an inner product space, $u, v \in V$ and $S \subseteq V$ be nonempty. 
+\begin{enumerate}
+    \item $u$ is \textbf{orthogonal} to $v$, denoted by $u \perp v$, iff $\langle u, v \rangle = 0$
+    \item $S$ is an \textbf{orthogonal set} if for all $u, v \in V$, $u \neq v$, and $u \perp v$
+    \item $S$ is an \textbf{orthonormal set} if $S$ is orthogonal and every vector in $S$ is a unit vector.
+\end{enumerate}
+\end{definition}
+
+\begin{example}
+Let $V = \RR^3$ under the standard inner product and 
+$$S = \{(0, 1, 0), (1, 0, 1), (1, 0, -1)\}, \quad T = \left\{(0, 1, 0), \left(-\frac{4}{5}, 0, \frac{3}{5}\right), \left(\frac{3}{5}, 0, \frac{4}{5}\right)\right\}$$
+
+If we take all 2-combination of $S$, then we can show that every pair is orthogonal to each other, but not orthonormal. However, in $T$, we can show that every pair is orthogonal to each other and each vector is a unit vector, thus, it is orthonormal.
+\end{example}
+
+\begin{example}
+Let $V = C[-\pi, \pi]$, then $S = \{\sin x, \cos x\}$ is orthogonal, but not orthonormal.\footnote{Prove this as an exercise}
+\end{example}
+
+\begin{remark}
+Let $V$ be an inner product space:
+\begin{enumerate}
+    \item For all $u \in V$, $\vec{0} \perp u$
+    \item If $u \in V$ such that $u \perp s$, for all $s \in V$, then $u = \vec{0}$
+    \item If $u \perp v$ and $w \perp v$, then $au + bw \perp v$, for all $a, b \in \RR$.
+    \item $S = \{v_1, v_2, \dots, v_n\}$ is an orthogonal set iff
+    $$\langle v_i, v_j \rangle = \begin{cases}
+        0 & \text{if $i = j$} \\
+        1 & \text{if $i \neq j$}
+    \end{cases} = \delta_{ij}$$
+\end{enumerate}
+\end{remark}
+
+\begin{theorem}[Pythagorean Theorem]
+Let $V$ be an inner product space and $u, v \in V$. Then $u \perp v$ iff $\lVert u + v \rVert^2 = \lVert u \rVert ^2 + \lVert v \rVert^2$.
+\end{theorem}
+
+\newpage
+\begin{definition}
+Let $V$ be an inner product space, $u \in V$, and $S \subseteq V$
+\begin{enumerate}
+    \item $u$ is orthogonal to $S$, denoted by $u \perp S$, if $u \perp s$ for all $s \in S$
+    \item The orthogonal complement of $S$, denoted by $S^\perp$ (S-perp) is
+    $$S^\perp = \{u \in V \mid u \perp s, \hspace{0.2cm} \forall s \in S\}$$
+\end{enumerate}
+\end{definition}
+
+\begin{remark}
+Let $V$ be an inner product space
+\begin{enumerate}
+    \item 
+    \begin{enumerate}
+        \item $\{0\}^\perp = \{u \in V \mid \vec{0} \perp u\} = V$
+        \item $V^\perp = \{u \in V \mid u \perp s, \hspace{0.2cm} \forall s \in S\} = \{\vec{0}\}$
+    \end{enumerate}
+    \item If $S \subseteq V$, then $S^\perp = (\operatorname{span} S)^\perp$. In particular if $W = \operatorname{span} S$, then $W^\perp = S^\perp$
+\end{enumerate}
+\end{remark}
+
+\begin{theorem}
+If $S$ is a subset of an inner product space, then $S^\perp \leq V$.
+\end{theorem}
+
+\begin{example}
+Find the orthogonal complement of $W_1 = \{(c - 6d, d, c) \mid c, d \in \RR\} \subseteq \RR^3$ under the standard inner product.
+\end{example}
+
+\textit{Solution.} 
+
+$$W_1 = \{c(1, 0, 1) + d(-6, 1, 0) \mid c, d \in \RR\} = \operatorname{span}\{(1, 0, 1), (-6, 1, 0)\}$$
+
+Thus, $W_1^\perp = S^\perp$ where $S = \{(1, 0, 1), (-6, 1, 0)\}$. Now recall that for a vector to be in the orthogonal complement,
+$$(x, y, z) \in S^\perp \longleftrightarrow \begin{cases}
+    \langle (x, y, z), (1, 0, 1)\rangle = 0 \\
+    \langle (x, y, z), (-6, 1, 0)\rangle = 0
+\end{cases}$$
+
+Forming the system of equations,
+$$\begin{cases}
+    x + z = 0 \\
+    -6x + y = 0
+\end{cases} \quad \longleftrightarrow \quad \bmat{1 & 0 & 0 \\ -6 & 1 & 0} \xrightarrow{EROs} \bmat{1 & 0 & 1 \\ 0 & 1 & 6}$$
+
+Let $z = t$, then $x = -t$ and $y = -6t$,
+$$W_1^\perp = S^\perp = \{(-t, -6t, t) \mid t \in \RR\} = \{t(-1, -6, 1) \mid t \in \RR\}$$
+$$=\boxed{\operatorname{span}\{(-1, 6, 1)\}}$$
+
+\begin{theorem}
+A finite orthogonal set $S = \{v_1, v_2, \dots, v_n\}$ of nonzero vectors in an inner product space $V$ is linearly independent.
+\end{theorem}
+
+\begin{proof}
+Suppose that,
+$$c_1v_1 + c_2v_2 + \cdots + c_nv_n = \vec{0}$$
+To demonstrate that $S = \{v_1, v_2, \dots, v_n\}$ is linearly independent, we must show that $c_1 = c_2 = \cdots = c_n = 0$. Recall that,
+$$\langle\vec0, v_i\rangle = 0 \Longrightarrow \langle c_1v_1 + c_2v_2 + \cdots + c_nv_n, v_i \rangle$$
+$$c_1\langle v_1, v_i \rangle +c_2\langle v_2, v_i \rangle + \cdots + c_n\langle v_n, v_i\rangle$$
+From the orthogonality of $S$ it follows that $\langle v_i, v_j \rangle = 0$ if $i \neq j$, and it is nonzero if $i = j$. Thus, the equation reduces to
+$$c_i\langle v_i, v_i\rangle = 0$$
+Since $S$ does not contain nonzero vectors, then this implies that each $c_i$ in the equation is equal to zero.
+\end{proof}
+
+
+\begin{definition}
+Let $V$ be a finite-dimensional inner product space. A basis $B$ for $V$ is called an \textbf{orthogonal basis} (resp. orthonormal basis) for $V$ if $B$ is an orthogonal (resp. orthonormal) set.
+\end{definition}
+
+\begin{theorem}
+Let $V$ be an inner product space and $B = \{v_1, v_2, \dots, v_n\}$ be an orthogonal basis for $V$. Then every $v \in V$ can be written as a linear combination
+$$v = c_1v_1 + c_2v_2 + \cdots + c_nv_n$$
+where 
+$$c_i = \frac{\langle v, v_i\rangle}{\langle v_i, v_i \rangle}$$
+\end{theorem}
+
+\begin{example}
+Let $B = \{\bmat{-1 & 1 & 1 & 1}^{\mathsf{T}}, \bmat{1 & -1 & 1 & 1}^{\mathsf{T}}, \bmat{1 &1 & -1 & 1}^{\mathsf{T}}, \bmat{1 & 1 & 1 & -1}^{\mathsf{T}}\}$.
+
+\begin{enumerate}
+    \item Show that $B$ is an orthogonal basis of $M_{4 \times 1}(\RR)$ under the standard inner product.
+
+    \textit{Solution.}
+    \begin{align*}
+    \langle \bmat{-1 & 1 & 1 & 1}^{\mathsf{T}}, \bmat{1 & -1 & 1 & 1}^{\mathsf{T}} \rangle = 0, \quad \quad \langle\bmat{-1 & 1 & 1 & 1}, \bmat{1 & 1 & -1 & 1}^{\mathsf{T}}\rangle = 0 \\
+    \langle\bmat{-1 & 1 & 1 & 1}^{\mathsf{T}}, \bmat{1 & 1 & 1 & -1}^{\mathsf{T}}\rangle = 0, \quad \quad \langle\bmat{1 & -1 & 1 & 1}, \bmat{1 & 1 & -1 & 1}^{\mathsf{T}}\rangle = 0 \\
+    \langle\bmat{1 & -1 & 1 & 1}^{\mathsf{T}}, \bmat{1 & 1 & 1 & -1}^{\mathsf{T}}\rangle = 0, \quad \quad \langle\bmat{1 & 1 & -1 & 1}^{\mathsf{T}}, \bmat{1 & 1 & 1 & -1}^{\mathsf{T}}\rangle = 0
+    \end{align*}
+    
+    \item Use (1) to solve for $c$ in
+    $$\begin{cases}
+        -a + b + c + d = 1\\
+        a - b + c + d = 8 \\
+        a + b - c + d = -7 \\
+        a + b + c - d = 2
+    \end{cases}$$
+
+    \textit{Solution.} The given system is equivalent to 
+    $$a\bmat{-1 \\ 1 \\ 1 \\ 1} + b\bmat{1 \\ -1 \\ 1 \\ 1} + c\bmat{1 \\ 1 \\ -1 \\ 1} + d\bmat{1 \\ 1 \\ 1 \\ -1} = \bmat{1 \\ 8 \\ -7 \\ 2}$$
+
+    The vector $\bmat{1 & 8 & -7 &2}^{\mathsf{T}}$ is a linear combination of the orthogonal set $B$. By the preceding theorem,
+    $$c = \frac{\langle\bmat{1 & 8 & -7 & 2}^{\mathsf{T}}, \bmat{1 & 1 & -1 & 1}^{\mathsf{T}}\rangle}{\langle\bmat{1 & 1 & -1 & 1}^{\mathsf{T}}, \bmat{1 & 1 & -1 & 1}^{\mathsf{T}}\rangle} = \frac{18}{4} = \boxed{\frac{9}{2}}$$
+\end{enumerate}
+\end{example}
+
+\begin{remark}
+If $A \in M_n(\RR)$ has orthogonal columns $a_1, a_2, \dots, a_n$, then the matrix equation $Ax = b$ has a unique solution $x = \bmat{x_1 & x_2 \cdots & x_n}^{\mathsf{T}}$ given by
+$$x_i = \frac{\langle b, a_i\rangle}{\langle a_i, a_i \rangle}$$
+\end{remark}
+
+\begin{theorem}
+If $A \in M_n(\RR)$ has orthogonal columns, then $A$ is nonsingular (If $A$ is orthonormal, then $A$ is nonsingular and its inverse $A\inv = A^{\mathsf{T}}$).
+\end{theorem}
+
+\begin{definition}
+Let $u, v \in V$ with $v \neq \vec{0}$ and $u \neq \operatorname{span}\{v\}$. The vector
+$$\operatorname{proj}_vu = \frac{\langle u, v \rangle}{\langle v, v \rangle}v$$
+is called the (orthogonal) projection of $u$ onto $v$.
+\end{definition}
+
+\begin{remark}
+\leavevmode
+\begin{enumerate}
+    \item $\operatorname{proj}_vu \in \operatorname{span}\{v\}$
+    \item $u - \operatorname{proj}_vu \perp v$
+\end{enumerate}
+\end{remark}
+
+\begin{definition}
+Let $S = \{w_1, w_2, \dots, w_n\}$ be an orthogonal subset of $V$ such that $\vec{0} \notin S$ and let $u \notin \operatorname{span}S$. The vector
+$$\operatorname{proj}_Su = \sum_{i=1}^n \operatorname{proj}_{w_i}u = \sum_{i=1}^n \frac{\langle u, w_i\rangle}{\langle w_i, w_i \rangle}w_i$$
+is called the \textbf{orthogonal projection} of $u$ onto $S$.
+\end{definition}
+
+\begin{remark}
+\leavevmode
+\begin{enumerate}
+    \item $\operatorname{proj}_Su \in \operatorname{span}S$
+    \item $u - \operatorname{proj}_Su \perp S$
+\end{enumerate}
+\end{remark}

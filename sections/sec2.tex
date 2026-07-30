@@ -1,0 +1,396 @@
+\newpage
+\section{Solving Systems of Linear Equations}
+Consider a system of linear equations with $n$ unknowns and $m$ equations:
+$$(*) = 
+\begin{cases}
+\begin{aligned}
+a_{11}x_1 & + a_{12}x_2 + \cdots + a_{1n}x_n && = b_1 \\
+a_{21}x_1 & + a_{22}x_2 + \cdots + a_{2n}x_n && = b_2 \\
+&\ \vdots && \ \vdots \\
+a_{m1}x_1 & + a_{m2}x_2 + \cdots + a_{mn}x_n && = b_m
+\end{aligned}
+\end{cases}
+$$
+
+\begin{theorem}
+For $(*)$ exactly one of the following holds:
+\begin{itemize}
+    \item $(*)$ has exactly one solution (consistent and independent)
+    \item $(*)$ has infinitely many solutions (consistent and dependent)
+    \item $(*)$ has no solutions (inconsistent)
+\end{itemize}
+\end{theorem}
+
+\begin{example}
+We could rewrite $(*)$ into its matrix form, $Ax = b$, where $A$ is the coefficient matrix and $b$ is the vector of constants,
+$$\underbrace{\bmat{a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn}}}_A \underbrace{\bmat{x_1 \\ x_2 \\ \vdots \\ x_n}}_x = \underbrace{\bmat{b_1 \\ b_2 \\ \vdots \\ b_n}}_b$$
+and we can denote the augmented matrix $[A \mid b]$ as
+$$\begin{amatrix}{4}
+a_{11} & a_{12} & \cdots & a_{1n} & b_1 \\
+a_{21} & a_{22} & \cdots & a_{2n} & b_2 \\
+\vdots & \vdots & \ddots & \vdots & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn} & b_n \\
+\end{amatrix}
+$$
+Notice that we have placed the coefficients in the left side and is separated by a vertical bar.\footnote{This serves as a visual representation on what we're separating.} On the right side we have the constants.
+\end{example}
+
+\begin{example}
+Consider the following system of equations
+$$\begin{cases}
+    w + 3x + y + z = 3 \\
+    2w + 2x + y + 2z = 8 \\
+    3w + x + 2y - z = -1
+\end{cases}$$
+\end{example}
+
+We can rewrite this in matrix form as:
+$$\left[ 
+\begin{matrix}
+1 & 3 & 1 & 1 \\
+2 & 2 & 1 & 2 \\
+3 & 1 & 2 & -1
+\end{matrix}
+\right]
+\left[
+\begin{matrix}
+w \\
+x \\
+y \\
+z \\
+\end{matrix}
+\right] = 
+\left[
+\begin{matrix}
+3 \\
+8 \\
+-1
+\end{matrix}
+\right]
+$$
+
+Shown below is its form in augmented matrix:
+$$
+\begin{amatrix}{4}
+1 & 3 & 1 & 1 & 3 \\
+3 & 1 & 2 & -1 & -1 \\
+\end{amatrix}$$
+
+\newpage
+\underline{\textbf{Recall}}
+
+In your previous math classes (Pre-calculus), you have learned solving system of equations through elimination by addition. To solve a system of equations, the goal is to convert it to an easier form that is easy to solve.
+
+\underline{\textbf{Question}.} Which processes will yield equivalent system of equations?
+
+Suppose we have the following system of equations:
+$$\begin{cases}
+    x - y = -2 \\
+    2x + 6y = 12
+\end{cases}$$
+
+I. Switching the position of the equations:
+\begin{align*}
+\begin{cases}
+    x - y = -2 \\
+    2x + 6y = 12
+\end{cases} \longleftrightarrow\,\,\,\,\,
+\begin{cases}
+    2x + 6y = 12 \\
+    x - y = -2
+\end{cases}
+\end{align*}
+
+II. Multiplying by a nonzero constant,
+\begin{align*}
+\begin{cases}
+    x - y = -2 \\
+    2x + 6y = 12
+\end{cases} \longleftrightarrow \,\,\,\,\,
+\begin{cases}
+    2x + 6y = 12 \\
+    x - y = -2
+\end{cases}
+\end{align*}
+
+
+III. Add a constant multiple of one equation to another
+\begin{align*}
+\begin{cases}
+    x - y = -2 \\
+    2x + 6y = 12
+\end{cases} 
+&\longleftrightarrow \,\,\,\,\,
+\begin{cases}
+    x - y = -2 \\
+    8y = 16
+\end{cases} \\[1em]
+&\longleftrightarrow \,\,\,\,\,
+\begin{cases}
+    x - y = -2 \\
+    y = 2
+\end{cases}
+\end{align*}
+All of these operations will yield the equivalent system of equations!
+
+Suppose we take the system of equations from above and convert it to an augmented matrix,
+$$\begin{amatrix}{2}
+1 & 1 & - 2\\ 0 & 1 & 2 \\
+\end{amatrix}
+$$
+Notice that it has a staircase form shown, as 
+$$
+\begin{bNiceMatrix}
+1 & 1 & -2 \\ 
+0 & 1 & \hspace{0.3cm}2 
+\CodeAfter
+  \tikz \draw[red, semithick, fill=red, fill opacity=0.1] 
+    (1-1.north west) -- (1-3.north east) -- 
+    (1-3.south east) -- (2-3.south east) -- 
+    (2-2.south west) -- (1-2.south west) -- 
+    (1-1.south west) -- cycle;
+\end{bNiceMatrix}
+$$
+This form is also known as the \href{https://math.stackexchange.com/questions/1628192/what-does-echelon-mean/1629207#1629207}{row echelon form}.
+\vspace{1em}
+
+\begin{definition}
+An $m \times n$ matrix is said to be in \textbf{row echelon form} if the following holds:
+\begin{itemize}
+    \item All zero rows of $A$ (if any) are at the bottom of $A$;
+    \item The leftmost nonzero entry of every nonzero row of $A$ is 1;
+    \item The leading entry of a higher row is strictly to the left of the leading entry of the next row.
+\end{itemize}
+\end{definition}
+
+\begin{remark}
+$A \in M_{m \times n}(\mathbb{R)}$ is in RREF (reduced row echelon form) if $A$ is in REF (reduced echelon form) and every leading entry of $A$ is the only nonzero entry of its column.
+\end{remark}
+
+\newpage
+\begin{remark}
+Each equation in a system corresponds to a row in its augmented matrix. The following processes will now yield equivalent systems:
+\begin{itemize}
+    \item \textbf{Type I} - Switch two rows in augmented matrix;
+    \item \textbf{Type II} - Multiply a row in augmented matrix by nonzero constant;
+    \item \textbf{Type III} - Add a constant multiple of one row in the augmented matrix to another row.
+\end{itemize}
+\end{remark}
+
+\subsection{Gauss-Jordan Reduction}
+To solve the system $Ax = b$:
+\begin{itemize}
+    \item Form the augmented matrix $[A \mid b]$
+    \item Use elementary row operations to bring augmented matrix to RREF
+    \item Express the resulting matrix as a system of linear equations
+    \item Use back-substitution
+\end{itemize}
+
+\begin{remark}
+\textbf{Gaussian elimination} is the term when dealing with matrices in REF form.
+\end{remark}
+
+\begin{example}
+Use Gauss-Jordan Reduction to find the solution set of the following equations:
+$$\begin{cases}
+    2x + 3y + z = 2 \\
+    2x + 4y + 2z = 8 \\
+    x - y - z = 4
+\end{cases}$$
+\end{example}
+
+\textit{Solution.} 
+
+Form the augmented matrix and apply elementary row operations,
+\begin{align*}
+    \begin{amatrix}{3}
+    2 & 3 & 1 & 2 \\ 
+    2 & 4 & 2 & 8 \\
+    1 & -1 & -1 & 4
+\end{amatrix} &\xrightarrow{R_1 \leftrightarrow R_3}
+\begin{amatrix}{3}
+    1 & -1 & -1 & 4 \\
+    2 & 4 & 2 & 8 \\
+    2 & 3 & 1 & 2
+\end{amatrix} \\
+\xrightarrow{\substack{R_2 \to R_2 - R_1 \\ R_3 \to R_3 - R_1}}
+\begin{amatrix}{3}
+    1 & -1 & -1 & 4 \\ 
+    0 & 6 & 4 & 0 \\
+    0 & 5 & 3 & -6
+\end{amatrix}
+& \xrightarrow{R_2 \to R_2 - R_3}
+\begin{amatrix}{3}
+    1 & -1 & -1 & 4 \\
+    0 & 1 & 1 & 6 \\
+    0 & 5 & 3 & -6
+\end{amatrix} \\
+\xrightarrow{R_3 \to R_3 - 5R_2}
+\begin{amatrix}{3}
+    1 & -1 & -1 & 4 \\
+    0 & 1 & 1 & 6 \\
+    0 & 0 & -2 & -36
+\end{amatrix} 
+& \xrightarrow{R_3 \to -\frac{1}{2}R_3}
+\begin{amatrix}{3}
+    1 & -1 & -1 & 4 \\
+    0 & 1 & 1 & 6 \\
+    0 & 0 & 1 & 18
+\end{amatrix} \\
+\xrightarrow{R_1 \to R_1 + R_2}
+\begin{amatrix}{3}
+    1 & 0 & 0 & 10 \\
+    0 & 1 & 1 & 6 \\
+    0 & 0 & 1 & 18
+\end{amatrix} 
+& \xrightarrow{R_2 \to R_2 - R_3}
+\begin{amatrix}{3}
+    1 & 0 & 0 & 10 \\
+    0 & 1 & 0 & -12 \\
+    0 & 0 & 1 & 18
+\end{amatrix} \\
+\Longrightarrow &\begin{cases}
+    x = 10 \\ 
+    y = -12 \\
+    z = 18
+\end{cases}
+\end{align*}
+
+Therefore, the solution set is $\boxed{\{(10, -12, 18)\}}$.
+
+\newpage
+\begin{example}
+Use Gauss-Jordan Reduction to find the solution set of the following equations:
+$$\begin{cases}
+    w + x + 2y + 3z = 13 \\
+    w - 2x + y + z = 8 \\
+    3w + x + y - z = 1
+\end{cases}$$
+\end{example}
+
+\textit{Solution.} 
+
+Form the augmented matrix and apply elementary row operations,
+\begin{align*}
+\begin{amatrix}{4}
+    1 & 1 & 2 & 3 & 13 \\
+    1 & -2 & 1 & 1 & 8 \\
+    3 & 1 & 1 & -1 & 1
+\end{amatrix} &\xrightarrow{\substack{R_2 \to R_2 - R_1 \\ R_3 \to R_3 - 3R_1}} 
+\begin{amatrix}{4}
+    1 & 1 & 2 & 3 & 13 \\
+    0 & -3 & -1 & -2 & -5 \\
+    0 & -2 & -5 & -10 & -38 
+\end{amatrix} \\
+\xrightarrow{R_2 \to R_2 - R_3} 
+\begin{amatrix}{4}
+    1 & 1 & 2 & 3 & 13 \\
+    0 & -1 & 4 & 8 & 33 \\0 & -2 & -5 & -10 & -38 
+\end{amatrix} & \xrightarrow{R_3 \to R_3 - 2R_2}
+\begin{amatrix}{4}
+    1 & 1 & 2 & 3 & 13 \\
+    0 & -1 & 4 & 8 & 33 \\
+    0 & 0 & -13 & -26 & -104
+\end{amatrix} \\
+\xrightarrow{\substack{R_2 \to -R_2 \\ R_3 \to -\frac{1}{13}R_3}} 
+\begin{amatrix}{4}
+    1 & 1 & 2 & 3 & 13 \\
+    0 & 1 & -4 & -8 & -33 \\
+    0 & 0 & 1 & 2 & 8
+\end{amatrix} & \xrightarrow{R_1 \to R_1 - R_2} 
+\begin{amatrix}{4}
+    1 & 0 & 6 & 11 & 46 \\
+    0 & 1 & -4 & -8 & -33 \\
+    0 & 0 & 1 & 2 & 8
+\end{amatrix} \\
+\xrightarrow{\substack{R_1 \to R_1 - 6R_3 \\ R_2 \to R_2 + 4R_3}}
+\begin{amatrix}{4}
+    1 & 0 & 0 & -1 & -2 \\
+    0 & 1 & 0 & 0 & -1 \\
+    0 & 0 & 1 & 2 & 8
+\end{amatrix} & \Longrightarrow 
+\begin{cases}
+    w - z = -2 \\
+    x = -1 \\
+    y + 2z = 8
+\end{cases}
+\end{align*}
+Let $z = t$, then, $w = t - 2, y = 8-2t$. Therefore, the solution set is $\boxed{\{(t - 2, -1, -2t + 8, t) \mid t \in \RR\}}$.
+
+\begin{remark}
+\leavevmode
+\begin{enumerate}
+    \item The variable $z$ in the system of equations above is called a \textbf{free variable}.
+    \item A system $Ax = b$ having at least one solution has $k$ free variables, where $k$ is the number of columns in the RREF of $[A \mid b]$ having no leading entries. The system is said to have a $k$-parameter solution.
+\end{enumerate}
+\end{remark}
+
+For the rest of the examples, I will not show the whole process.\footnote{Since this is TOO tedious to format.} It is up to the reader to verify that the solution is correct.
+
+\begin{example}
+Use Gaussian Elimination to find the solution set.
+$$\begin{cases}
+    x - y + 2z = 4 \\
+    x + z = 6 \\
+    2x - 3y + 5z = 4 \\
+    3x + 2y - z = 1
+\end{cases}$$
+
+\textit{Solution.}
+
+Form the augmented matrix and apply elementary row operations,
+\begin{align*}
+    \begin{amatrix}{3}
+        1 & -1 & 2 & 4 \\
+        1 & 0 & 1 & 6 \\
+        2 & -3 & 5 & 4 \\
+        3 & 2 & -1 & 1
+    \end{amatrix} &\xrightarrow{\text{REF}}
+    \begin{amatrix}{3}
+        1 & -1 & 2 & 4 \\
+        0 & 1 & -1 & 2 \\
+        0 & 0 & 1 & 21/2 \\
+        0 & 0 & 0 & 1
+    \end{amatrix} \\
+\end{align*}
+$$\Longrightarrow \begin{cases}
+        x - y + 2z = 4 \\
+        y - z = 2 \\
+        z = 21/2 \\
+        0 = 1 \Longrightarrow \text{This is a contradiction!}
+    \end{cases}$$
+Since the solution is inconsistent, therefore, the solution set is $\emptyset$ or $\{\}$.
+\end{example}
+
+\begin{remark}
+The system $Ax = b$ has no solution iff $\bmat{0 & 0 & \cdots & 0 & \mid & 1}$ is a row in an REF of $[A \mid b]$.
+\end{remark}
+
+\begin{example}
+Solve for the solution of the following system of equations.
+$$\begin{cases}
+    2x_1 + x_2 - 4x_3 - 5x_4 + 5x_5 = 5 \\
+    3x_1 - x_2 - 6x_3 - 5x_4 = 5 \\
+    5x_1 - 2x_2 - 10x_3 - 8x_4 - x_5 = 8
+\end{cases}$$
+
+\textit{Solution.} 
+
+Form the augmented matrix and apply elementary row operations,
+$$\begin{amatrix}{5}
+    2 & 1 & -4 & -5 & 5 & 5 \\
+    3 & -1 & -6 & -5 & 0 & 5 \\
+    5 & -2 & -10 & -8 & -1 & 8
+\end{amatrix} \xrightarrow{\text{RREF}}
+\begin{amatrix}{5}
+    1 & -2 & -2 & 0 & -5 & 0 \\
+    0 & 1 & 0 & -1 & 3 & 1 \\
+    0 & 0 & 0 & 0 & 0 & 0\\
+\end{amatrix}
+$$
+$$\Longrightarrow \begin{cases}
+    x_1 - 2x_2 - 2x_3 - 5x_5 = 0 \\
+    x_2 - x_4 + 3x_5 = 1
+\end{cases}$$
+Let $x_3 = r, x_4 = s, x_5 = t$, then, $x_2 = s - 3t + 1$ and $x_1 = 2r + 2s - t + 2$. Therefore, the solution set is $\boxed{\{(2r + 2s - t + 2, s - 3t + 1, r, s,t) \mid r, s, t \in \RR\}}$.
+\end{example}

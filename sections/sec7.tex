@@ -1,0 +1,227 @@
+\newpage
+\section{Basis and Dimension of a Vector Space}
+\begin{definition}
+A subset $B$ of a vector space $V$ is called a basis for $V$ if $\operatorname{span}B = V$ and $B$ is linearly independent.
+\end{definition}
+
+
+\begin{example}
+\leavevmode
+\begin{enumerate}
+    \item $\emptyset$ is a basis for $\{\vec{0}\}$
+    \item $B = \{e_1, e_2, \dots, e_n\} \subseteq \RR^n$ is a basis for $\RR^n$
+    \item $B = \{E_{k\ell} \mid k = 1, 2, \dots, m \quad l = 1, 2, \dots, n\}$ is a basis for $\matmn$ 
+    \item $B = \{1, x, x^2, \dots, x^n\}$ is a basis for $P_n$
+    \item $B = \{1, i\}$ is a basis for $\CC$.
+\end{enumerate}
+\end{example}
+
+\begin{remark}
+The bases in Example 2 - 5 as shown above are known as the \textbf{standard bases} of their respective spaces.
+\end{remark}
+
+\begin{example}
+Is $B = \{(2, 3), (1, 2)\}$ a basis for $\RR^2$?
+\end{example}
+
+\textit{Solution.} Recall that a set $B$ is a basis if $\operatorname{span} B = V$ and $B$ is linearly independent. Let us verify whether these conditions hold true:
+$$x(2, 3) + y(1, 2) = (a, b)$$
+$$(2x + y, 3x + 2y) = (a, b)$$
+
+To verify, whether $B$ is linearly independent,
+$$(2x + y, 3x + 2y) = (0, 0)$$
+$$\begin{amatrix}{2}
+    2 & 1 & 0 \\
+    3 & 2 & 0
+\end{amatrix} \xrightarrow{EROs}
+\begin{amatrix}{2}
+    2 & 1 & 0 \\ 
+    1 & 0 & 0 \\
+\end{amatrix}$$
+Because $\det B \neq 0$ it is nonsingular and its solution is the trivial solution. Therefore, $B$ is linearly independent and is a basis for $\RR^2$.
+
+\begin{example}
+Is $B = \{x^2 + x, x^2 + 1, 1\}$ a basis for $P_2$?
+\end{example}
+
+\textit{Solution.} Let us first verify if $B$ is a spanning set. Let $ax^2 + bx + c \in P_2$, and $D, E, F \in \RR$,
+$$ax^2 + bx + c = D(x^2 + x) + E(x^2 + 1) + F(1)$$
+$$=x^2(D + E) + x(D) + (E + F)$$
+$$\begin{cases}
+    D + E = a \\
+    D = b \\
+    E + F = c
+\end{cases}
+\quad \longleftrightarrow \quad
+\begin{amatrix}{3}
+    1 & 1 & 0 & a \\
+    1 & 0 & 0 & b \\
+    0 & 1 & 1 & c \\
+\end{amatrix}
+$$
+
+Since the system of equations has a solution with the form $(a, a - b, c - a + b)$. Therefore, it spans $P_2$. To verify that it is linearly independent,
+$$0 = x^2(D + E) +x(D) + (E + F)$$
+Since the system of equations forces the other variables to be 0, thus, $B$ is linearly independent. Therefore, $B$ is a basis for $P_2$.\footnote{An alternative solution would be to use determinants.}
+
+
+\newpage
+\begin{theorem}
+If $B = \{v_1, v_2, \dots, v_k\}$ is a basis for a vector space $V$, then every vector in $V$ can be expressed in exactly one way as a linear combination of vectors in $B$.
+$$v = a_1v_1 + a_2v_2 + \cdots + a_kv_k$$
+\end{theorem}
+
+\begin{theorem}
+Let $V$ be a vector space having a finite spanning set $S$. Then $S$ has a subset $B$ that is a basis for $V$. To find a basis for $V$ with finite spanning set $S = \{v_1, v_2, \dots, v_k\}$
+\begin{enumerate}
+    \item Form $\vec{0} = x_1v_1 + x_2v_2 + \cdots + x_kv_k$ where each $x_i \in \RR$ is unknown.
+    \item Use EROs to bring the coefficient matrix to REF or RREF.
+    \item The vectors corresponding to columns containing the leading entries forms a basis for $V$.
+\end{enumerate}
+\end{theorem}
+
+\lline
+
+\begin{example}
+Find a basis for the given subspace
+$$W:=\spn\{x^2, x + 4, 2x + 7, 1\} \leq P_2$$
+\textit{Solution.}
+
+A spanning set for $W$ is $S = \{x^2, x + 4, 2x + 7, 1\}$
+$$\vec{0} = Ax^2 + B(x + 4) + C(2x + 7) + D$$
+$$\vec{0} = x^2(A) + x(B + 2C) + (4B + 7C + D)$$
+Forming the augmented matrix,
+$$\begin{amatrix}{4}
+    1 & 0 & 0 & 0 & 0 \\
+    0 & 1 & 2 & 0 & 0 \\
+    0 & 4 & 7 & 1 & 0
+\end{amatrix} \xrightarrow{\text{RREF}}
+\begin{amatrix}{4}
+    1 & 0 & 0 &0 & 0 \\
+    0 & 1 & 0 & 2 & 0 \\ 
+    0 & 0 & 1 & -1 & 0 \\
+\end{amatrix}
+$$
+And since the fourth column has no leading entries, we can remove it. Thus, $B = \{x^2, x + 4, 2x + 7\}$ is a basis for $W$.
+\end{example}
+
+\begin{example}
+Find a basis for the given subspace $W = \spn\{(1, -1, 3, 2), (0, -1, 2, 1), (2, 1, 0, 1)\} \subseteq \RR^2$.
+
+\textit{Solution.}
+$$a(1, -1, 3, 2) + b(0, -1, 2, 1) + c(2, 1, 0, 1) = (0, 0, 0, 0)$$
+$$(a + 2c, -a - b + c, 3a + 2b, 2a + b + c) = (0, 0, 0,0)$$
+$$\begin{amatrix}{3}
+1 & 0 & 2 & 0 \\
+-1 & -1 & 1 & 0 \\
+3 & 2 & 0 & 0 \\
+2 & 1 & 1 & 0
+\end{amatrix} \xrightarrow{\text{RREF}}
+\begin{amatrix}{3}
+    1 & 0 & 2 & 0 \\
+    0 & 1 & -3 & 0 \\
+    0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 \\
+\end{amatrix}
+$$
+Therefore, $\{(1, -1, 3, 2), (0, -1, 2, 1)\}$ is a basis for $W$.
+\end{example}
+
+\newpage
+\begin{example}
+Find a basis for the given subspace $W = \left\{\bmat{a & b \\ c & d} \in M_2(\RR) \suchthat b + 2c - d = 0\right\}$.
+
+\textit{Solution.}
+
+Let us first find a spanning set,
+\begin{align*}
+    A = \bmat{a & b \\ c & d} \in W &\longleftrightarrow  b+ 2c - d = 0 \\
+    &\longleftrightarrow \bmat{a & b \\ c & b + 2c} \\
+    &\longleftrightarrow \bmat{a & 0 \\ 0 & 0 } + \bmat{0 & b \\ 0 & b} + \bmat{0 & 0 \\ c & 2c} \\
+    &\longleftrightarrow a\bmat{1 & 0 \\ 0 & 0} + b\bmat{0 & 1 \\ 0 & 1} + c\bmat{0 & 0 \\ 1 & 2}
+\end{align*}
+$$W = \spn\underbrace{\left\{\bmat{1 & 0 \\ 0 & 0}, \bmat{0 & 1 \\ 0 & 1}, \bmat{0 & 0 \\ 1 & 2}\right\}}_B$$
+Thus, $B$ spans $W$. Form,
+$$a\bmat{1 & 0 \\ 0 & 0} + b\bmat{0 & 1\\ 0 & 1} + c\bmat{0 & 0 \\ 1 & 2} = \bmat{0 & 0 \\ 0 & 0}, \quad a, b, c \in \RR$$
+$$\bmat{a & b \\ c & b + 2c} = \bmat{0 & 0 \\ 0 & 0}$$
+$$\Longrightarrow \begin{cases}
+    a = 0 \\ 
+    b = 0 \\
+    c = 0 \\
+    b + 2c = 0
+\end{cases}$$
+And since $a = b = c = 0$, $B$ is linearly independent. Therefore, $B$ is a basis for $W$.
+\end{example}
+
+\begin{example}
+Find a basis for $W = \{ax^3 + bx^2 + cx + d \in P_3 \mid a + c = 0 \text{ and } b + d = 0\}$.
+
+\textit{Solution.}
+
+Let $f(x) = ax^3 + bx^2 + cx + d \in W$ and since there are restrictions, it must follow that $c = -a$ and $d = -b$,
+$$ax^3 + bx^2 -ax -b = a(x^3 - x) + b(x^2 - 1)$$
+$$f(x) \in \spn\{x^3 - x, x^2 - 1\}$$
+$$\therefore W = \spn\underbrace{\{x^3 - x, x^2 - 1\}}_B$$
+Thus, $B$ spans $W$. And since $x^2 - 1$ is not a scalar multiple of $x^3 - x$, $B$ is linearly independent. Therefore, $B$ is a basis for $W$.
+\end{example}
+
+\begin{definition}
+A vector space $V$ with a finite spanning set is said to be \textbf{finite dimensional}. Otherwise, $V$ is said to be \textbf{infinite dimensional}.
+\end{definition}
+
+\newpage
+\begin{remark}The following are some remarks on basis:
+\begin{enumerate}
+    \item Every finite-dimensional vector space has a finite basis.
+    \item Every infinite-dimensional vector space has an infinite basis.\\
+    \underline{\textbf{Example:}}
+    \leavevmode
+    \begin{itemize}
+        \item The vector space $\RR^n, M_{m \times n}(\RR), P_n, \CC$ are all finite-dimensional.
+        \item $\mathscr{F}(\RR)$ is infinite-dimensional.
+        \item $\RR[x]$ the set of all polynomials in the variable $x$ having real coefficients is an infinite-dimensional vector space under addition and scalar multiplication of polynomials. ($B = \{x^n \mid 0 \leq n \in \ZZ\}$ is an infinite basis for $\RR[x]$).
+    \end{itemize}
+\end{enumerate}
+\end{remark}
+
+\begin{theorem}[Basis Completion Theorem]
+Let $V$ be a finite-dimensional vector space and $S \subseteq V$ be a linearly independent subset of $V$. Then $V$ has a basis $B$ containing $S$.
+
+To extend a linearly independent set $S$ to a basis for $V$
+\begin{enumerate}
+    \item Let $C$ be a known basis (standard basis) for $V$. Then $T := S \cup C$ is a spanning set for $V$.
+    \item Use the preceding algorithm to get a subset $B$ of $T$ that is a basis for $V$, Then $B$ contains $S$.
+\end{enumerate}
+\end{theorem}
+
+\begin{example}
+Find a basis for $M_{3 \times 1}(\RR)$ containing $v_1 = \bmat{2 \\ 1 \\ 0}$ and $v_2 = \bmat{1 \\ -1 \\ 1}$.
+\end{example}
+
+\textit{Solution.} Verify that $S = \{v_1, v_2\}$ is linearly independent.
+
+Let $C = \left\{\bmat{1 \\ 0 \\ 0}, \bmat{0 \\ 1 \\ 0}, \bmat{0 \\ 0 \\ 1}\right\}$ be the standard basis for $M_{3 \times 1}(\RR)$.
+
+Form
+$$T = \left\{\bmat{2 \\ 1 \\ 0}, \bmat{1 \\ -1 \\ 1}, \bmat{1 \\ 0 \\ 0}, \bmat{0 \\ 1 \\ 0}, \bmat{0 \\ 0 \\ 1}\right\}$$
+
+Using the previous algorithm, we obtain the following coefficient matrix,
+$$\bmat{2 & 1 & 1 & 0 & 0 \\ 1 & -1 & 0 & 1 & 0 \\ 0 & 1 & 0 & 0 & 1} \xrightarrow{\text{RREF}} \bmat{1 & 0 & 1/3 & 1/3 & 0 \\ 0 & 1 & 1/3 & -2/3 & 0 \\ 0 & 0 & 0 & 0 & 1}$$
+
+Since there are no pivots for columns 3 and 4. We can delete them. Therefore, $B = \left\{\bmat{2 \\ 1 \\ 0}, \bmat{0 \\ 1 \\ 0}, \bmat{0 \\ 0 \\ 1}\right\}$ is a basis for $M_{3 \times 1}(\RR)$ containing $v_1$ and $v_2$.
+
+\begin{theorem}[Steinite Replacement Theorem]
+Let $V$ be a finite-dimensional vector space with finite spanning set $S$. If $T$ is a linearly independent subset of $V$, then $|T| \leq |S|$.
+\end{theorem}
+
+\begin{corollary}
+Any two bases of a finite-dimensional vector space $V$ has the same number of elements.
+\end{corollary}
+
+\begin{definition}
+The number of elements of any basis of a finite-dimensional vector space $V$ is called the dimension of $V$, denoted by $\dim V$. If $n = \dim V$, then $V$ is said to be $n$-dimensional.
+\end{definition}
+
+\begin{remark}
+If $V$ is an infinite-dimensional vector space, then $\dim V = +\infty$.
+\end{remark}

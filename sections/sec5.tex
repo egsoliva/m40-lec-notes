@@ -1,0 +1,179 @@
+\newpage
+\section{Vector Spaces and Subspaces}
+
+\begin{definition}
+A \textbf{vector space} (over $\mathbb{R}$) is a set $V$ equipped with two operations: $\oplus$ (vector addition) and $\odot$ (scalar multiplication) satisfying the following for all $u, v, w \in V$ and for all $c, d \in \mathbb{R}$:
+\begin{itemize}
+    \item A1. $u \oplus v \in V$ (closure)
+    \item A2. $(u \oplus v) \oplus w = u \oplus (v \oplus w)$ (associativity)
+    \item A3. $u \oplus v = v \oplus u$ (commutativity)
+    \item A4. There exists a zero vector $\vec{0} \in V$ such that $u \oplus \vec{0} = u$
+    \item A4. For any $u \in V$, there exists an inverse $-u \in V$ such that $u \oplus (-u) = \vec{0}$ \\
+    \leavevmode
+    \item S1. $c \odot u \in V$ (closure)
+    \item S2. $(c + d) \odot u = (c \odot u) \oplus (d \odot u)$ 
+    \item S3. $c \odot (u \oplus v) = (c \odot u) \oplus (c \odot v)$
+    \item S4. $(cd) \odot u = c \odot (d \odot u)$
+    \item S5. $1 \odot u = u$
+\end{itemize}
+\end{definition}
+
+\begin{remark}
+Let $V$ be a vector space
+\begin{enumerate}
+    \item The elements of $V$ are called \textbf{vectors}, and the set of all real numbers are \textbf{scalars}.
+    \item There are 2 different:
+    \begin{enumerate}
+        \item additions: $\oplus$ on $V$ and $+$ on $\RR$
+        \item multiplications: $\odot$ on $V$ and $\cdot$ on $\RR$
+        \item zeros: $\vec{0}$ (zero vector) and $0$ (zero scalar)
+    \end{enumerate}
+\end{enumerate}
+If the context is clear we will use the $+$ and $\cdot$ in place of $\oplus$ or $\odot$.
+\end{remark}
+
+\begin{example}
+The following are vector spaces:
+
+1. $\mathbb{R}^n = \{(a_1, a_2, \dots, a_n) \mid a_1, a_2, \dots, a_n \in \mathbb{R})\}$ under 
+$$(a_1, a_2, \dots, a_n) + (b_1, b_2, \dots, b_n) = (a_1 + b_1, a_2 + b_2, \dots, a_n + b_n)$$
+$$c(a_1, a_2, \dots, a_n) = (ca_1, ca_2, \dots, ca_n)$$
+
+Wherein the zero vector $\vec{0} = (\underbrace{0, 0, \dots, 0}_n)$ and its inverse is $-(a_1, a_2, \dots, a_n) = (-a_1, -a_2, \dots, -a_n)$
+
+2. $M_{m \times n}(\mathbb{R})$ under matrix addition and scalar multiplication on a matrix
+
+3. $P_n = \{a_nx^n + a_{n-1}x^{n-1} + \dots + a_1x + a_0 \mid a_0, a_1, \dots, a_n \in \mathbb{R}\}$
+
+4. $\mathbb{C} = \{a + bi \mid a, b \in \mathbb{R}\, \land \, i^2 = -1\}$
+
+5. $\mathscr{F}(\mathbb{R})$ which is the set of all real-valued functions with domain $\mathbb{R}$ under
+$$(f + g)(x) = f(x) + g(x)$$
+$$(cf)(x) = cf(x) , \quad c \in \RR$$
+
+6. $V = (0, +\infty) = \mathbb{R}^+$ under
+$$x \oplus y = xy \in V$$ 
+$$r \odot x = x^r \in V$$
+
+
+\end{example}
+
+\begin{theorem}
+Let $V$ be a vector space, $u \in V$ and $c \in \mathbb{R}$.Then
+\begin{itemize}
+    \item $\vec{0}$ is unique and the additive inverse $-u$ is unique.
+    \item $c\vec{0} = c(\vec{0} + \vec{0})$
+    \item $cu = \vec{0} \Longrightarrow c = 0 \text{ or } u = \vec{0}$
+    \item $-(cu) = (-c)u = c(-u)$
+    \item $-u = (-1)u$
+\end{itemize}
+\end{theorem}
+
+\begin{definition}
+Let $V$ be a vector space and $W \subseteq V$. If $W$ is also a vector space under the same operations as $V$, then $W$ is called a \textbf{subspace} of $V$, denoted by $W \leq V$.
+\end{definition}
+
+\begin{example}
+\leavevmode
+\begin{enumerate}
+    \item If $V$ is a vector space then the following are subspaces of $V$:
+    \begin{enumerate}
+        \item $V$ (improper subspace)
+        \item $\{\vec{0}\}$ (trivial subspace)
+    \end{enumerate}
+    \item $P_1 = \{ax + b \mid a, b \in \RR\}$ is a subspace of $P_2 = \{ax^2 + bx + c \mid a, b, c \in \RR\}$.
+\end{enumerate}
+\end{example}
+
+\begin{theorem}[Subspace Test]
+Let $V$ be a vector space and $W \subseteq V$. Then $W \leq V$ iff the following are satisfied:
+\begin{itemize}
+    \item $W \neq \emptyset$
+    \item For all $w_1, w_2 \in W$, $w_1 + w_2 \in W$
+    \item For all $c \in \mathbb{R}$, and for all $w \in W$, $cw \in W$
+\end{itemize}
+\end{theorem}
+
+\begin{remark}
+A nonempty subset $W$ of $V$ is \ul{NOT} a subspace of $V$ iff at least one of the following is true:
+\begin{enumerate}
+    \item There exists $w_1, w_2 \in W$ such that $w_1 + w_2 \notin W$
+    \item There exists $c \in \RR$ such that $cw \notin W$
+\end{enumerate}
+\end{remark}
+
+\begin{example}
+Let $V = \RR^3$. Show that $W = \{(x, y, z) \mid x + y + z = 0\}$ is a subspace of $\RR^3$.
+\end{example}
+
+\begin{proof}
+\leavevmode
+\begin{itemize}
+    \item $(0, 0, 0) \in W$ since $0 + 0 + 0 = 0$, thus, $W \neq \emptyset$.
+    \item Let $w_1 = (x_1, y_1, z_1), w_2 = (x_2, y_2, z_2) \in W$
+    $$w_1 + w_2 = (x_1 + x_2, y_1 + y_2, z_1 + z_2) \in W$$
+    \begin{align*}
+        (x_1 + x_2) + (y_1 + y_2) + (z_1 + z_2) &= (x_1 + y_1 + z_1) + (x_2 + y_2 + z_2) \\
+        &= 0
+    \end{align*}
+    Thus, $w_1 + w_2 \in W$
+    \item Let $c \in \RR$ and $w = (x, y, z) \in W$
+    $$c(x, y, z) = (cx, cy, cz) $$
+    $$c(x + y + z) = c(0)$$
+    Thus, $cw \in W$
+\end{itemize}
+Therefore, $W \leq \RR^3$ by the Subspace Test.
+\end{proof}
+
+\begin{example}
+Let $V = M_2(\RR)$. Show that 
+$$W = \{A \in M_2(\RR) \mid A \text{ is upper triangular}\}$$
+is a subspace of $V$.
+\end{example}
+
+\begin{proof}
+\leavevmode
+\begin{itemize}
+    \item $0_{2 \times 2} \in W \Longrightarrow W \neq \emptyset$
+    \item Let $A = \bmat{a_1 & a_2 \\ 0 & a_3}$, $B = \bmat{b_1 & b_2 \\ 0 & b_3}$, and $c \in \RR$,
+    $$A + B = \bmat{a_1 + b_1 & a_2 + b_2 \\ 0 & a_3 + b_3} \in W$$
+    $$cA = \bmat{ca_1 & ca_2 \\ 0 & ca_3} \in W$$
+\end{itemize}
+Therefore, $W \leq M_2(\RR)$ by the Subspace Test.
+\end{proof}
+
+\begin{example}
+Let $V = M_2(\RR)$. Show that 
+$$W = \{A \in M_2(\RR) \mid A \text{ is singular}\}$$
+is \textbf{NOT} a subspace of $V$.
+\end{example}
+
+\begin{proof}
+By counter example, let $A = \bmat{1 & 0 \\ 0 & 0}, B = \bmat{0 & 0 \\ 0 & 1}$,
+$$A + B = \bmat{1 & 0 \\ 0 & 1} = I_2 \notin W$$
+Therefore, $W \nleq V$ by the Subspace Test.
+\end{proof}
+
+\begin{example}
+Let $V = P_1 = \{ax + b \mid a, b \in \RR\}$. Prove whether the following are subspaces of $P_1$ or not:
+\begin{enumerate}[label=\alph*.]
+    \item $W = \{ax - 2a \mid a \in \RR\}$
+    \begin{proof}
+        \leavevmode
+        \begin{itemize}
+            \item $0 = 0x = 0 \in W \rightarrow W \neq \emptyset$
+            \item Let $f = ax - 2a, g = bx - 2b$, and $c \in \RR$. Then
+            $$f + g = (a + b)x - 2(a + b) \in W$$
+            $$cf = c(ax - 2a) = (ac)x - 2(ac) \in W$$
+        \end{itemize}
+    Therefore, $W \leq P_1$, by the Subspace Test.
+    \end{proof}
+    \item $W = \{ax + b \mid a + b = 1\}$
+    \begin{proof}
+    \leavevmode
+    Take $f = x$ and $c = \dfrac{1}{2}$,
+    $$cf = \frac{1}{2}x \notin W$$
+    Therefore, $W \nleq P_1$, by the Subspace Test.
+    \end{proof}
+\end{enumerate}
+\end{example}

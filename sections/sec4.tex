@@ -1,0 +1,255 @@
+\newpage
+\section{Determinant of a Square Matrix}
+Let $A = [a_{ij}]\in M_n(\mathbb{R})$. The determinant of $A$ is defined as follows:
+\begin{itemize}
+    \item If $n = 1$, then $\det A = a_{11}$
+    \item Suppose $n \geq 1$ and assume that the determinant of a matrix of size $n - 1$ is defined. Let $M_{ij}$ be the matrix obtained from $A$ by deleting row $i$ and column $j$ of $A$. Define
+    $$C_{ij} = (-1)^{i+j} \det M_{ij}$$ wherein $(i, j)$ is the cofactor of $A$.
+\end{itemize}
+
+Then we define the determinant as a cofactor expansion along row $i$,
+$$\det A = a_{i1}C_{i1} + a_{i2}C_{i2} + \cdots + a_{in}C_{in}$$
+
+Similarly, we could also define it as a cofactor expansion along column $j$,
+$$\det A = a_{1j}C_{1j} + a_{2j}C_{2j} + \cdots + a_{nj}C_{nj}$$
+
+\lline
+
+\begin{example}
+Obtain a formula for the determinant of $\displaystyle A = \left[ 
+\begin{matrix}
+    a_{11} & a_{12} \\
+    a_{21} & a_{22}
+\end{matrix}
+\right]$
+\end{example}
+
+\textit{Solution.} By cofactor expansion along row 1,
+\begin{align*}
+\det A &= a_{11}C_{11} + a_{12}C_{12} \\
+&=a_{11}(-1)^{1+1}\det [a_{22}] + a_{12}(-1)^{1+2}\det [a_{21}] \\
+&=\boxed{a_{11}a_{22} - a_{12}a_{21}}
+\end{align*}
+
+\begin{example}
+Find the determinant of $\displaystyle B = \left[
+\begin{matrix}
+    5 & 6 \\
+    4 & 8
+\end{matrix}
+\right]$.
+\end{example}
+
+\textit{Solution.} Recall that from the previous example, we have obtained a determinant formula for a square matrix of size 2, we could use that to solve for $\det B$
+$$\det B = 5(8) - 6(4) = \boxed{16}$$
+
+\begin{example}
+Find the determinant of $\displaystyle B = \left[ 
+\begin{matrix}
+    3 & 1 & -4 \\
+    2 & 5 & 6 \\
+    1 & 4 & 8
+\end{matrix}
+\right]$.
+\end{example}
+
+\textit{Solution.} By cofactor expansion along column 1,
+$$\det B = 3(-1)^{1+1}
+\vmat{
+5 & 6 \\
+4 & 8
+} + 
+2(-1)^{2 + 1}
+\vmat{
+1 & -4 \\
+4 & 8
+} +
+1(-1)^{3 + 1}
+\vmat{
+1 & -4 \\
+5 & 6
+}
+$$
+$$=3(16) -2(24) + 26 = \boxed{26}$$
+
+\newpage
+\begin{example}
+Find the determinant of $\displaystyle C = \bmat{
+2 & 3 & 0 & 0 \\
+1 & 1 & 0 & 0 \\
+4 & 6 & 1 & -5 \\
+0 & 5 & 3 & 0
+}$.
+\end{example}
+
+\textit{Solution.} Notice that column 4 has 3 zeros which could help us compute for the determinant for efficiently,
+$$\det C = 0 + 0 -5(-1)^{3 + 4}\vmat{
+2 & 3 & 0 \\
+1 & 1 & 0 \\
+0 & 5 & 3
+} + 0 = 5 \vmat{
+2 & 3 & 0 \\
+1 & 1 & 0 \\
+0 & 5 & 3
+}$$
+We will perform cofactor expansion along column 3 since it has the least amount of zeros,
+$$=5\left(3(-1)^{3+3}\vmat{
+2 & 3 \\
+1 & 1
+}\right) = 15(2 - 3) = \boxed{-15}$$
+
+\begin{example}
+The examples that will be shown here will help us determine some properties of determinants. Let $\displaystyle A = \bmat{
+a & b \\
+c & d
+}$, and $\displaystyle B = \bmat{
+a_{11} & a_{12} & a_{13} \\
+0 & a_{22} & a_{23} \\
+0 & 0 & a_{33}
+}$
+\begin{itemize}
+    \item Suppose we switch row 1 and row 2 of matrix $A$, then the determinant is
+    $$\vmat{
+    c & d \\
+    a & b
+    } = bc - ad = -(ad -bc) = -\det A$$
+    \item Suppose we add a constant $r \in \mathbb{R}$ to row 2 of matrix $A$, then the determinant is
+    $$\vmat{
+    a & b\\
+    rc & rd
+    } = ard - brc = r(ad - bc) = r\det A$$
+    \item Suppose we multiply $r$ to row 1 of matrix $A$ and then add it to row 2, then the determinant is
+    $$\vmat{
+    a & b\\
+    ra + c & rb + d
+    } = a(rb + d) - b(ra + c) = ad - bc = \det A$$
+    \item Suppose we perform cofactor expansion along row 3 of matrix $B$ to get its determinant,
+    $$\det B = a_{33}(-1)^{3 + 3}\vmat{
+    a_{11} & a_{12} \\
+    0 & a_{22}
+    } = a_{33}(a_{11}a_{22}) = a_{11}a_{22}a_{33}$$
+\end{itemize}
+\end{example}
+
+\lline
+
+\underline{\textbf{Some Properties of Determinant}}. Let $A, B \in M_n(\mathbb{R})$,
+
+1. If $B$ is obtained from $A$ by:
+\begin{itemize}
+    \item switching two rows/columns of $A$ then $\det B = -\det A$
+    \item multiplying $r \in \mathbb{R}$ to a row/columns of $A$ then $\det B = r\det A$
+
+    e.g. $\det(rA) = \underbrace{r \times r \times \cdots \times r}_{n}\det A = r^n\det A$
+    \item adding a multiple of a row/column of $A$ to another row/column of $A$ then $\det B = \det A$
+\end{itemize}
+
+2. $\det(A^{\mathsf{T}}) = \det A$
+
+3. If $A$ has a row/column full of 0s then $\det A = 0$.
+
+4. If $A$ has two equal rows/columns, then $\det A = 0$.
+
+5. If $A = [a_{ij}]$ is upper or lower triangular, then $\det A = a_{11}a_{22}\cdots a_{nn}$, which is the product of all the main diagonal entries of the matrix.
+
+6. $\det(AB) = \det A \det B$, and in particular, $\det(A^k) = (\det A)^k$ for all $k \in \mathbb{Z}^+$.
+
+\lline
+
+\begin{theorem}
+If $E \in M_n(\mathbb{R})$ is elementary, then $\det E \neq 0$.
+\end{theorem}
+
+\begin{theorem}
+$A \in M_n(\mathbb{R})$ is nonsingular iff $\det A \neq 0$, in this case
+$$\det(A^{-1}) = \frac{1}{\det A}$$
+\end{theorem}
+
+\begin{definition}
+Let $A \in M_n(\mathbb{R})$ and $C_{ij}$ be the $(i, j)$ column of $A$. The \textbf{adjoint} of $A$ is $\adj A = [C_{ij}]^{\mathsf{T}}$.
+\end{definition}
+
+\begin{example}
+Find the adjoint of the following:
+
+1. $\displaystyle A = \bmat{a & b \\ c & d}$
+
+\textit{Solution.}
+
+\begin{align*}
+C_{11} = (-1)^{1 + 1}d = d \quad & C_{21} = (-1)^{2 + 1} b = -b \\
+C_{12} = (-1)^{1 + 2}c = -c \quad & C_{22} = (-1)^{2 + 2}a = a
+\end{align*}
+
+$$\therefore \adj A = \bmat{ d & -b \\ -c & a}$$
+
+2. $\displaystyle B = \bmat{1 & 1 & 0 \\ 2 & 3 & 4 \\ 5 & 8 & 9}$
+\end{example}
+
+\textit{Solution.} \label{example:4.6}
+\begin{align*}
+C_{11} &= \vmat{3 & 4 \\ 8 & 9} = -5 & C_{21} &= -\vmat{1 & 0 \\ 8 & 9} = -9 & C_{31} &= \vmat{1 & 0 \\ 3 & 4} = 4 \\
+C_{12} &= -\vmat{2 & 4 \\ 5 & 9} = 2 & C_{22} &= \vmat{1 & 0 \\ 5 & 9} = 9  & C_{32} &= -\vmat{1 & 0 \\ 2 & 4} = -4 \\
+C_{13} &= \vmat{2 & 3 \\ 5 & 8} = 1  & C_{23} &= -\vmat{1 & 1 \\ 5 & 8} = -3 & C_{33} &= \vmat{1 & 1 \\ 2 & 3} = 1
+\end{align*}
+$$\therefore \adj B = \bmat{-5 & -9 & 4 \\ 2 & 9 & -4 \\ 1 & -3 & 1}$$
+
+\begin{theorem}[Adjoint Formula]
+If $A \in M_n(\mathbb{R})$ then,
+$$A(\adj A) = (\det A)I_n = (\adj A)A$$
+If $A$ is nonsingular then,
+$$A\left(\frac{1}{\det A} \cdot \adj A\right) = I_n$$
+$$A^{-1} = \frac{1}{\det A} \adj A$$
+\end{theorem}
+
+\begin{example}
+If $\displaystyle B = \bmat{
+a & b \\
+c & d
+}$ is nonsingular then,
+$$A^{-1} = \frac{1}{ad - bc}\bmat{d & -b \\ -c & a}$$
+\end{example}
+
+\begin{example}
+Find the inverse of $\displaystyle B = \bmat{1 & 1 & 0 \\ 2 & 3 & 4 \\ 5 & 8 & 9}$.
+\end{example}
+
+\textit{Solution.}
+
+Recall that if we perform Type III operations in any row or column of a matrix, then its determinant does not change. Thus, we could multiply -1 to the the first column and add that to the second column, we would get the following matrix:
+$$\bmat{1 & 0 & 0 \\ 2 &1 & 4 \\ 5 & 3 & 9} \Longrightarrow \det B = \vmat{1 & 0 & 0 \\ 2 & 1 & 4 \\ 5 & 3 & 9}$$
+
+Let us perform cofactor expansion along row 1,
+$$\det B = 1 \vmat{1 & 4 \\ 3 & 9} = 9 - 12 = -3$$
+
+Since we have already obtained $\adj B$ from \hyperref[example:4.6]{Example 4.6}, we could use that to find the inverse using the adjoint formula,
+$$B^{-1} = -\frac{1}{3}\bmat{-5 & -9 & 4 \\ 2 & 9 & -4 \\ 1 & -3 & 1}=\boxed{\bmat{5/3 & 3 & -4/3 \\ -2/3 & -3 & 4/3 \\ -1/3 & 1 & -1/3}}$$
+
+\begin{theorem}[Cramer's Rule]
+Let $A \in M_n(\mathbb{R})$ be nonsingular and $b \in M_{n \times 1}(\mathbb{R})$. The matrix equation $Ax = b$ has a unique solution $\displaystyle x = \bmat{x_1 & x_2 & \cdots & x_n}^{\mathsf{T}}$ given by
+$$x_i = \frac{\det A_i}{\det A}$$
+where $A_i$ is the matrix obtained by replacing column $i$ of $A$ by $b$.
+\end{theorem}
+
+\begin{example}
+Solve for $y$ only in the system of equations below
+$$\begin{cases}
+    x + y + z = 8 \\
+    -x - 2y + 3z = 1 \\
+    3x - 7y + 4z = 0
+\end{cases}$$
+\end{example}
+
+\textit{Solution.}
+
+Let $A$ be the coefficient matrix and $b$ be the column vector of the constants,
+$$A = \bmat{
+1 & 1 & 1 \\
+-1 & -2 & 3 \\
+3 & -7 & 4
+}, \hspace{0.3cm} b = \bmat{
+8 \\ 1 \\ 0
+}, \hspace{0.3cm} A_2 = \bmat{1 & 8 & 1 \\ -1 & 1 & 3 \\ 3 & 0 & 4}
+$$
+By Cramer's Rule,
+$$y = \frac{\det A_2}{\det A} = \frac{105}{39} = \boxed{\frac{35}{13}}$$

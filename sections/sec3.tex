@@ -1,0 +1,344 @@
+\newpage
+\section{Inverse of a Square Matrix}
+Recall that for all $a \in \mathbb{R}$, there exists a multiplicative inverse $a^{-1} \in \mathbb{R}$, such that 
+$$a \cdot a^{-1} = 1 =  a^{-1} \cdot a$$
+
+Now let us figure out if $0_{n \times n} + A \in M_n(\mathbb{R})$, can we find a $B \in M_n(\mathbb{R})$ such that $AB = I_n = BA$? The answer to that is \textbf{not always}!
+
+As a counterexample, suppose that we have two matrices $A$ and $B$, such that their product $AB = I_2$,
+$$A = \left [
+\begin{matrix}
+1 & 0 \\
+0 & 0 \\
+\end{matrix} \right ] \hspace{0.3cm} \text{and} \hspace{0.3cm} 
+B = \left [
+\begin{matrix}
+a & b \\
+c & d \\
+\end{matrix} \right ]$$
+
+Now suppose this is true, then,
+$$\left [
+\begin{matrix}
+1 & 0 \\
+0 & 0 \\
+\end{matrix} \right ]
+\left [
+\begin{matrix}
+a & b \\
+c & d \\
+\end{matrix} \right ] = 
+\left [
+\begin{matrix}
+1 & 0 \\
+0 & 1 \\
+\end{matrix} \right ]$$
+$$\left [
+\begin{matrix}
+a & b \\
+0 & 0 \\
+\end{matrix} \right ] = 
+\left [
+\begin{matrix}
+1 & 0 \\
+0 & 1 \\
+\end{matrix} \right ]$$
+
+This is a contradiction, because if we compare the $(2, 2)$ entries of both matrices, $0 \neq 1$. Hence no such $B$ exists.
+
+\begin{definition}
+A square matrix $A \in M_n(\mathbb{R})$ is said to be \textbf{nonsingular/invertible} if there exists a matrix $B \in M_n(\mathbb{R})$ such that
+$$AB = I_n = BA$$
+In this case, $B$ is said to be the multiplicative inverse of $A$. If $A$ has no inverse, it is said to be \textbf{singular/invertible}.
+\end{definition}
+
+\begin{theorem}
+The inverse of a nonsingular matrix is unique.
+\end{theorem}
+
+\begin{proof}
+Assume for the sake of contradiction that $A$ has two inverse $B$ and $C$, such that
+$$AB = BA = I_n$$
+$$AC = CA = I_n$$
+Recall that $B$ can be expressed as
+$$B = BI_n = B(AC)$$
+$$= (BA)C = I_nC = C$$
+Because $B = C$, which is a contradiction, therefore, the inverse is unique.
+
+\end{proof}
+
+\textbf{Notation:} Let $A \in M_n(\mathbb{R})$,
+
+1. If $A$ is nonsingular, then its unique inverse is denoted by $A^{-1}$
+
+2. If $A \neq 0_n$ then $A^0 = I_n$
+
+3. For any $k \in \mathbb{Z}^+$, we represented the matrix being multiplied $k$ times as
+$$A^k = \underbrace{A \times A \times \cdots \times A}_{k}$$
+
+4. The laws of exponents also apply,
+$$A^k \cdot A^l = A^{k+l}$$
+$$(A^k)^l = A^{kl}$$
+However, 
+$$(AB)^2 \neq A^2B^2$$
+
+\begin{remark}(Properties of Nonsingular Matrices).
+
+Let $A, B \in M_n(\mathbb{R})$ and nonsingular, $0 \in \mathbb{R}$, and $k \in \mathbb{Z}^+$. Then the following are nonsingular:
+\begin{enumerate}
+    \item $A$ with its inverse $A^{-1}$
+    \item $AB$ with its inverse\footnote{This is also known as the \href{https://math.stackexchange.com/questions/2435303/russells-shoes-and-socks}{socks-shoes principle}.} $(AB)^{-1} = B^{-1}A^{-1}$
+    \item $cA$ with its inverse $\displaystyle \frac{1}{c} \cdot A^{-1}$
+    \item $A^{\mathsf{T}}$ with its inverse $(A^{\mathsf{T}})^{-1} = (A^{-1})^{\mathsf{T}}$
+    \item $A^k$ with its inverse $(A^k)^{-1} = (A^{-1})^k$
+\end{enumerate}
+\end{remark}
+
+\begin{theorem}[Cancellation Laws]
+Let $B$ and $C$ be matrices of suitable sizes and $A \in M_n(\mathbb{R})$ be nonsingular. Then,
+$$AB = AC \Longrightarrow B = C$$
+$$BA = CA \Longrightarrow B = C$$
+\end{theorem}
+
+\begin{proof}
+Since $A$ is nonsingular and its inverse $A^{-1}$ exists, then suppose that $AB = AC$ is true, we can show that by multiplying both sides by its inverse,
+$$A^{-1}(AB) = A^{-1}(AC)$$
+$$I_nB = I_nC$$
+$$B = C$$
+
+Similarly we can show that $B = C$ when $BA = CA$,
+$$(BA)A^{-1} = (CA)A^{-1}$$
+$$BI_n = CI_n$$
+$$B = C$$
+
+\end{proof}
+
+\begin{remark}
+If $A, B \in M_n(\mathbb{R})$ such that $AB = I_n$, then $BA = I_n$ and so $A$ is nonsingular.
+\end{remark}
+
+To further understand this remark, let us put it into an example. Suppose $A \in M_n(\mathbb{R})$ such that $A^2 - 2A + I_2 = 0$, figure out whether $A$ is nonsingular.
+
+\textit{Solution.} 
+$$I_2 = 2A - A^2$$
+$$=(2I_2)(A)- AA$$
+$$=\underbrace{(2I_2 - A)}_B(A)$$
+
+Therefore, $A$ is nonsingular with inverse $A^{-1} = 2I_2 - A$.
+
+\newpage
+\begin{fact}
+If $A$ and $B$ are matrices of  size and $b_j = \text{col }j$ of $B$, then
+$$AB = A\left[\begin{matrix}
+    b_1 & b_2 & \cdots & b_n
+\end{matrix}\right] = \left[
+\begin{matrix}
+    Ab_1 & Ab_2 & \cdots & Ab_n
+\end{matrix}
+\right]$$
+\end{fact}
+
+\begin{theorem}
+$A \in M_n(\mathbb{R})$ is nonsingular iff the system of equations, $Ax = b$ has a unique solution for any $b$, given by 
+$$x = A^{-1}b$$
+\end{theorem}
+
+\begin{proof}
+Suppose that $A$ is nonsingular and let $b \in M_{n \times 1}(\mathbb{R})$. Take $x = A^{-1}b$,
+$$A(A^{-1}b) = I_nb = b$$
+Therefore, $Ax = b$ has at least one solution. Let us use proof by contradiction to show that the system has a unique solution. Suppose then that $x_1$ and $x_2$ are solutions of $Ax = b$ such that
+$$Ax_1 = b = Ax_2$$
+By cancellation law, we can show that, $x_1 = x_2$. Which is a contradiction, hence, the system $Ax = b$ has only one solution. Suppose $Ax = b$ has exactly one solution for any $b \in M_{n \times 1}(\mathbb{R})$, if $e_j = \text{col}\, j$ of $I_n$, then $Ax = e_j$ has a unique solution $x_j$.
+
+Let $B = \bmat{x_1 & x_2 & \cdots & x_n}$,
+\begin{align*}
+AB = A\bmat{x_1 & x_2 \cdots & x_n} \\
+= \bmat{Ax_1 & Ax_2 & \cdots & Ax_n} \\
+= \bmat{e_1 & e_2 \cdots & e_n} = I_n
+\end{align*}
+
+Therefore, $A$ is nonsingular with inverse $B$.
+\end{proof}
+
+\begin{remark}
+Let $A \in M_n(\mathbb{R})$ be nonsingular. Then column $j$ of $A^{-1}$ is the unique solution to $Ax = e_j$ where $e_j$ is column $j$ of $I_n$.
+\end{remark}
+
+\lline
+
+We will abbreviate the elementary row operations in some texts as \textbf{EROs}.
+
+\begin{itemize}
+    \item $A \in M_n(\mathbb{R})$ is nonsingular if there exists an inverse $A^{-1} \in M_n(\mathbb{R})$ such that
+    $$A\cdot A^{-1} = I_n = A^{-1} \cdot A$$
+    \item To find $A^{-1}$
+    $$[A \mid I_n] \stackrel{\text{EROs}}{\longrightarrow} [C \mid D]$$
+    wherein $C = I_n$ and $D = A^{-1}$
+    \item If $C$ has a row of 0s, then $A$ is singular
+
+\end{itemize}
+
+\begin{remark}
+$A \in M_n(\mathbb{R})$ is nonsingular iff $A$ is row equivalent to $I_n$, and $A$ is said to be singular iff $A$ is row equivalent to a matrix of zero row.
+\end{remark}
+
+\begin{definition}
+A matrix $E \in M_n(\mathbb{R})$ is called an \textbf{elementary matrix} if it can be obtained by applying a single elementary row operation on $I_n$.
+\end{definition}
+
+\newpage
+\begin{example}\label{example:3.1}
+Let $A = \bmat{2 & -4 & 6 \\ 3 & -5 & 8 \\ 0 & 1 & -4}$, use elementary row operations to find the inverse $A\inv$.
+\end{example}
+
+\textit{Solution.} 
+
+Form the augmented matrix,
+$$\bmat{2 & -4 & 6 & \vline & 1 & 0 & 0 \\
+3 & -5 & 8 & \vline & 0 & 1 & 0 \\ 0 & 1 & -4 & \vline & 0 & 0 & 1} \xrightarrow{\text{RREF}} 
+\bmat{1 & 0 & 0 & \vline & -2 & 5/3 & 1/3 \\ 0 & 1 & 0 & \vline & -2 & 4/3 & -1/3 \\ 0 & 0 & 1 & \vline & -1/2 & 1/3 & -1/3}
+$$
+$$\therefore A\inv = \bmat{-2 & 5/3 & 1/3 \\ -2 & 4/3 & -1/3 \\ -1/2 & 1/3 & -1/3}$$
+
+\begin{example}
+Use the answer from \hyperref[example:3.1]{Example 3.1} to find the unique solution of the system of equations:
+$$\begin{cases}
+    2x - 4y + 6z = 1 \\
+    3x - 5y + 8z = -2 \\
+    y - 4z = 4
+\end{cases}$$
+
+\textit{Solution.}
+
+Recall that $x = A\inv b$,
+$$\bmat{x \\ y \\ z} = \bmat{-2 & 5/3 & 1/3 \\ -2 & 4/3 & -1/3 \\ -1/2 & 1/3 & -1/3}\bmat{1 \\ -2 \\ 4}$$
+$$\therefore \bmat{x \\ y \\ z } = \bmat{-4 \\ -6 \\ -5/2}$$
+\end{example}
+
+\begin{remark}
+$A \in M_n(\RR)$ is nonsingular iff $A$ is row equivalent to $I_n$. And $A$ is singular iff $A$ is row equivalent to a matrix of zero row.
+\end{remark}
+
+\begin{definition}
+A matrix $E \in M_n(\RR)$ is called an elementary matrix if it can be obtained by applying a single elementary row operation on $I_n$.
+\end{definition}
+
+\underline{\textbf{Types of Elementary Matrices}}
+
+\underline{\textbf{Type 1}}. We denote the elementary matrix obtained when we switch rows $k$ and $\ell$ of $I_n$ as $P_{k\ell}$
+
+e.g. $\displaystyle \bmat{0 & 0 & 0 & 1 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 1 & 0 & 0 & 0} = P_{14}; \hspace{0.2cm} P_{14}^{-1} = P_{14}$
+
+\underline{\textbf{Type 2}}. We denote the elementary matrix obtained when we multiply row $k$ of $I_n$ by the nonzero constant $c$ as $Q_k(c)$
+
+e.g. $\displaystyle \bmat{1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & c & 0 \\ 0 & 0 & 0 & 1} = Q_3(c); \hspace{0.2cm} Q_3(c)^{-1} = Q_3\left(\frac{1}{c}\right)$
+
+\underline{\textbf{Type 3}}. We denote the elementary matrix obtained when we add $d$ times row $k$ of $I_n$ to row $\ell$
+
+e.g. $\displaystyle \bmat{1 & d & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1} = R_{21}(d); \hspace{0.2cm} R_{21}(d)^{-1} = R_{21}(-d)$
+
+\begin{theorem}
+The elementary matrices are nonsingular and their inverses are also elementary.
+\end{theorem}
+
+\begin{remark}
+Some notable observations for elementary matrices are shown here:
+
+1. The inverses of the elementary matrices can be simplified as follows:
+\begin{itemize}
+    \item $P_{k\ell}^{-1} = P_{k\ell}$
+    \item $\displaystyle Q_k(c)^{-1} = Q_k\left(\frac{1}{c}\right), c \neq 0$
+    \item $R_{k\ell}(c)^{-1} = R_{k\ell}(-c)$
+\end{itemize}
+
+2. Let $E \in M_n(\mathbb{R})$ be an elementary matrix and $C \in M_{n \times p}(\mathbb{R})$. Then, we can denote the matrix obtained by applying $C$ to the same row operation applied on $I_n$ to get $E$ as $EC$
+
+\end{remark}
+
+\begin{example}\label{example:3.3}
+Let $E_1, E_2, E_3$, and $A$ be matrices defined as follows:
+\begin{align*}
+E_1 &= \begin{bmatrix} 1 & 0 & 0 \\ 0 & \sqrt{2} & 0 \\ 0 & 0 & 1 \end{bmatrix}, &
+E_2 &= \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 4 \\ 0 & 0 & 1 \end{bmatrix}, \\[1ex]
+E_3 &= \begin{bmatrix} 1 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 1 & 0 \end{bmatrix}, &
+A   &= \begin{bmatrix} 1 & \pi & 3 & 2 \\ 0 & \sqrt{2} & 0 & 0 \\ 0 & -\frac{3}{4} & -1 & 5 \end{bmatrix}
+\end{align*}
+Determine the elementary row operations corresponding to $E_1$, $E_2$, and $E_3$.
+
+\textit{Solution.} The elementary row operations represented by the given matrices are:
+\[
+\begin{aligned}
+E_1 &\implies R_2 \leftarrow \sqrt{2}R_2 && \text{(or $Q_2(\sqrt{2})$)} \\
+E_2 &\implies R_2 \leftarrow R_2 + 4R_3 && \text{(or $R_{32}(4)$)} \\
+E_3 &\implies R_2 \longleftrightarrow R_3 && \text{(or $P_{23}$)}
+\end{aligned}
+\]
+\end{example}
+
+\newpage
+\begin{example}
+Find $E_3E_2E_1A$ using the matrices from \hyperref[example:3.3]{Example 3.3}.
+\end{example}
+
+\textit{Solution.} 
+\[
+\begin{aligned}
+E_3E_2E_1A = E_3E_2E_1\bmat{1& \pi & 3 & 2 \\ 0 & -\sqrt{2} & 0 & 0 \\ 0 & -3/4 & -1 & 5} \\
+= E_3E_2\bmat{1 & \pi & 3 & 2 \\ 0 & -2 & 0 & 0 \\ 0 & -3/4 & -1 & 5} \\
+=E_3\bmat{1 & \pi & 3 & 2 \\ 0 & -5 & -4 & 20 \\ 0 & -3/4 & -1 & 5} \\
+=\bmat{1  & \pi & 3 & 2 \\ 0 & -3/4 & -1 & 5 \\ 0 & -5 & -4 & 20}
+\end{aligned}
+\]
+
+\begin{theorem}
+Let $C, D \in M_{m \times n}(\mathbb{R})$. Then $C$ and $D$ are row equivalent iff there exists elementary matrices $E_1, E_2, \dots, E_n \in M_n(\mathbb{R})$ such that
+$$D = E_k \cdots E_2E_1C$$
+\end{theorem}
+
+\begin{remark}
+$A \in M_n(\mathbb{R})$ is nonsingular iff:
+\begin{itemize}
+    \item $A$ is row equivalent to $I_n$
+    \item $I_n = E_k \cdots E_2E_1A$ for some elementary $E_k, \dots, E_2, E_1 \in M_n(\mathbb{R})$
+    \item $A^{-1} = E_k \cdots E_2E_1$ and $A = E_1^{-1}E_2^{-1}\cdots E_k^{-1}$ for some elementary $E_1, E_2, \dots, E_k \in M_n(\mathbb{R})$
+    \item $A$ is a product of elementary matrices
+\end{itemize}
+\end{remark}
+
+\begin{example}
+Let $A = \bmat{ 3 & -2 \\ 1 & 0}$. Write $A$ and $A^{-1}$ as products of elementary matrices.
+\end{example}
+
+\textit{Solution.} Let us first reduce $A$ into the identity matrix and then identify the EROs used,
+\begin{align*}
+\bmat{3 & -2 \\ 1 & 0} \xrightarrow{R_1 \leftrightarrow R_2}
+\bmat{1 & 0 \\ 3 & -2} \xrightarrow{R_2 \to R_3 - 3R_2}
+\bmat{1 & 0 \\ 0 & -2} \\
+\bmat{1 & 0 \\ 0 & -2} \xrightarrow{R_2 \to -1/2R_2} \bmat{1 & 0 \\ 0 & 1} = I_2
+\end{align*}
+Then,
+$$I_2 = Q_2\left(-\frac{1}{2}\right)R_{12}(-3)P_{12}A$$
+Its inverse $A^{-1}$ is:
+\begin{align*}
+A^{-1} &= Q_2\left(-\frac{1}{2}\right)R_{12}(-3)P_{12} \\
+&=\bmat{1 & 0 \\ 0 & -1/2}\bmat{1 & 0 \\ -3 & 1}\bmat{0 & 1 \\ 1 & 0}
+\end{align*}
+
+Recall that $A = E_1^{-1}E_2^{-1}\cdots E_k^{-1}$, thus,
+$$A = \boxed{\bmat{0 & 1 \\ 1 & 0}\bmat{1 & 0 \\ 3 & 1}\bmat{1 & 0 \\ 0 & -2}}$$
+
+\newpage
+\begin{theorem}
+Let $A \in M_n(\mathbb{R})$. The following statements are equivalent:
+\begin{itemize}
+    \item $A$ is nonsingular
+    \item $A$ is row equivalent to $I_n$
+    \item $A$ is the product of elementary matrices
+    \item The matrix equation $Ax = b$ has a unique solution for any $b \in M_{n \times 1}(\mathbb{R})$
+    \item The homogeneous matrix equation $Ax = 0_{n \times 1}$, has only the \underline{\textbf{trivial solution}} $x = 0_{n \times 1}$
+\end{itemize}
+\end{theorem}
+
+\begin{example}
+$A = \bmat{1 & 1 & 1 \\ 1 & 1 & 1 \\ 1 & 1 & 1}$ is singular, since $Ax = 0_{3 \times 1}$ has a nontrivial solution namely $x = \bmat{1 \\ 1 \\ -2}$.
+\end{example}

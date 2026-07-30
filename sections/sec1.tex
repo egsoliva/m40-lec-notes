@@ -1,0 +1,235 @@
+\section{Matrices and Matrix Operations}
+% \epigraph{Immer mit den einfachsten Beispielen anfangen.}{--- David Hilbert}
+
+\begin{definition}
+An $m \times n$ matrix is a rectangular array of real numbers arranged in $m$ horizontal rows and $n$ vertical columns.
+\end{definition}
+
+$$A = \left [
+\begin{matrix}
+a_{11} & \dots & a_{1n} \\
+\vdots & \ddots & \vdots \\
+a_{m1} & \dots & a_{mn}
+\end{matrix} \right ] = [a_{ij}]_{m \times n}
+$$
+
+\begin{definition}
+An $m \times n$ matrix where $m, n \in \mathbb{R}^+$ and $m = n$, wherein it has the same number of rows and columns is called a \textbf{square matrix}. A $1 \times n$ matrix is called a \textbf{row vector}. And an $n \times 1$ matrix is called a \textbf{column vector}.
+\end{definition}
+
+\begin{definition}
+We will define the set of all $m \times n$ matrices with $\mathbb{R}$ entries as $M_{m \times n}(\mathbb{R})$. And we will denote the set of all square matrices with size $n$ as $M_n(\mathbb{R})$.
+\end{definition}
+
+\begin{example}
+Let $A$ be a square matrix with size $3 \times 3$, and 
+$$ A = [a_{ij}]_{3 \times 3} = 
+    \left [ 
+    \begin{matrix}
+    1 & 1 & 0 \\
+    2 & 0 & 1 \\
+    3 & -1 & 2
+    \end{matrix} 
+\right ]$$
+Find the value of the following entries: $a_{12}, a_{31}$, and $a_{33}$.
+
+Recall that $a_{ij}$ is the $(i, j)$ entry of $A$ where $i$ represents the row and $j$ is the column. For the example above use the subscript $ij$ as a guide. $a_{12}$ is the $(1, 2)$ entry in the matrix, thus, $a_{12} = 1$. The following entries are left to the reader.
+
+\end{example}
+
+\begin{example}
+Let $B$ be a matrix wherein $B = [b_{ij}]_{3 \times 2}$ where $b_{ij} = i + j$, draw the matrix and its entries.
+
+$$B = \bmat{2 & 3 \\ 3 & 4 \\ 4 & 5}$$
+The $b_{ij}$ entries are left as an exercise to the reader.
+\end{example}
+
+\begin{remark}\label{remark:1.1}
+Two matrices $A = [a_{ij}]$ and $B = [b_{ij}]$ are said to be equal, denoted by $A = B$, if they have the same size and $a_{ij} = b_{ij}$ for all $i, j$. 
+\end{remark} 
+
+However, by \hyperref[remark:1.1]{Remark 1.1}, this does not imply that two matrices with the same size are equal. Let us illustrate an example. Suppose that there exists two matrices $C, D \in M_n(\RR)$.
+$$C = 
+\setlength{\extrarowheight}{1mm}
+\begin{bNiceMatrix}
+-4 & 6 \\
+1 & 7
+\CodeAfter
+  \tikz \draw (2-1) circle (1.7mm) 
+              (2-2) circle (1.7mm) ;
+\end{bNiceMatrix}, \quad
+D = 
+\setlength{\extrarowheight}{1mm}
+\begin{bNiceMatrix}
+-4 & 6 \\
+7 & 1
+\CodeAfter
+  \tikz \draw (2-1) circle (1.7mm) 
+              (2-2) circle (1.7mm) ;
+\end{bNiceMatrix}
+$$
+
+Notice that they have different $(2, 1)$ and $(2, 2)$ entries. Thus, $[c_{ij}] \neq [d_{ij}]$.
+
+\begin{definition}
+Let $A = [a_{ij}]_{n \times n}$, wherein 
+$$A = \left [
+\begin{matrix}
+a_{11} & \dots & a_{1n} \\
+\vdots & \ddots & \vdots \\
+a_{m1} & \dots & a_{mn}
+\end{matrix} \right ] \in M_n(\mathbb{R}),$$
+
+1. $a_{ij}$ where $i = j$ are called the \underline{main diagonal entries}
+
+2. $A$ is said to be:
+\begin{enumerate}
+    \item[a.] \textbf{diagonal} if all entries $a_{ij} = 0$ where $i \neq j$,
+    \item[b.] \textbf{upper triangular} if all entries $a_{ij} = 0$ where $i > j$,
+    \item[c.] \textbf{lower triangular} if all entries $a_{ij} = 0$ where $i < j$.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+An $n \times n$ matrix is called an \textbf{identity matrix}, denoted by $I_n$ wherein all the diagonal entries are equal to 1, and the rest are 0. 
+$$I_n = \bmat{1 & 0 & \cdots & 0 \\ 0 & 1 & \cdots & 0 \\ 0 & 0 & \ddots & 0 \\ 0 & 0 & \cdots & 1} \in M_n(\RR)$$
+An $m \times n$ \textbf{zero matrix}, denoted by $0_{m \times n}$ is a matrix wherein all its entries are 0.
+\end{definition}
+
+\begin{remark} Listed below are some observations on the matrices we have discussed:
+
+1. $I_n = [\delta_{ij}]_{n \times n}$ where it is represented by a piecewise function\footnote{Also known as the Kronecker delta function.} $\delta_{ij} = \begin{cases}
+    1 & \text{if $i = j$} \\
+    0 & \text{if $i \neq j$}
+\end{cases}$
+
+2. Suppose you have a square matrix of size $n$, $A \in M_n(\mathbb{R})$ is diagonal with diagonal entries $a_{11}, a_{22}, \dots, a_{nn}$, then we write
+$$A = \diag(a_{11}, a_{22}, \dots, a_{nn})$$
+\end{remark}
+
+\lline
+
+To illustrate examples of diagonal matrices:
+$$P = \diag(2, \pi, e, 0) = \bmat{2 & 0 & 0 & 0 \\ 0 & \pi & 0 & 0 \\ 0 & 0 & e & 0 \\ 0 & 0 & 0 & 0}$$
+$$I_2 = \diag(1, 1) = \bmat{1 & 0 \\ 0 & 1}$$
+$$0_{3 \times 3} = \diag(0, 0, 0) = \bmat{0 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0}$$
+
+Do note that the notation for diagonal matrices \textbf{only applies to square matrices}. And in general, suppose there exists an identity matrix $I_n$ it can be represented with the diagonal notation with $\diag(\underbrace{1, 1, \dots, 1}_n)$ (this also applies to the zero matrix but replace $1$ with $0$).
+
+\begin{definition}
+Let us consider two matrices with $m \times n$ size $A = [a_{ij}]$ and $B = [b_{ij}]$, $A, B \in M_{m \times n}(\mathbb{R})$ and a scalar $c \in \mathbb{R}$
+
+1. The sum of $A$ and $B$, 
+$$A + B = [a_{ij} + b_{ij}]_{m \times n}$$
+
+2. The scalar product of $c$ and $A$, 
+$$cA = [ca_{ij}]_{m \times n}$$
+
+3. The transpose of $A$,
+$$A^{\mathsf{T}} = [t_{ij}]_{n \times m}$$
+where $t_{ij} = a_{ji}$.
+\end{definition}
+
+\begin{example}
+Let us illustrate the definitions we have shown above:
+\begin{enumerate}
+    \item \begin{align*}
+        \bmat{4 & -3 \\ 6 & 0 \\ 7 & -1} + 3\bmat{1 & 1 \\ -2 & 5 \\ 0 & -2} &= \bmat{4 & -3 \\ 6 & 0 \\ 7 & -1} + \bmat{3 & 3 \\ -6 & 15 \\ 0 & -6} \\
+        & = \bmat{7 & 0 \\ 0 & 15 \\ 7 & -7}
+    \end{align*}
+    \item $$\bmat{-1 & 0 \\ 4 & 1 \\ 2 & -3}^{\mathsf{T}} = \bmat{-1 & 4 & 2 \\ 0 & 1 & -3}$$
+    \item $$\bmat{-1 & 2 & 0 \\ 2 & 1 & 0 \\ 0 &  0 & 3}\tpse = \bmat{-1 & 2 & 0 \\ 2 & 1 & 0 \\ 0 & 0 & 3}$$
+    Notice that in this example the transpose of a matrix is equal to itself. We call such matrices \textbf{symmetric}, we will further expand on this on \hyperref[def:14.4]{Chapter 14}.
+    \item $$\frac{1}{2}\bmat{4 & 2 & 0}\tpse - \bmat{1 \\ -4 \\ 2} = \bmat{2 \\ 1 \\ 0} - \bmat{1 \\ -4 \\ 2} = \bmat{1 \\ 5 \\ -2}$$
+\end{enumerate}
+\end{example}
+
+\begin{theorem}[Properties of Matrix Addition, Scalar Multiplication, and Transposition]
+\leavevmode \\
+Let $A, B, C \in M_{m \times n}(\mathbb{R})$ and $c, d \in \mathbb{R}$. Then,
+
+1. Matrix addition is commutative and associative,
+$$A + B = B + A$$
+$$A + (B + C) = (A + B) + C$$
+
+2. There exists an identity matrix $0_{m \times n}$ such that when added to $A$ it returns $A$,
+$$A + 0_{m \times n} = A$$
+
+3. There exists an additive inverse $-A = -1(A)$, such that when added to $A$ it returns $0_{m \times n}$,
+$$A + (-A) = 0_{m \times n}$$
+
+4. Scalars could commute,
+$$(cd)A = c(dA) = d(cA)$$
+
+5. Scalars could be distributed,
+$$(c + d)A = cA + dA$$
+$$c(A + B) = cA + cB$$
+
+6. $$(A + B)^{\mathsf{T}} = A^{\mathsf{T}} + B^{\mathsf{T}}$$
+
+7. $$(cA)^{\mathsf{T}} = cA^{\mathsf{T}}$$
+
+8. $$(A^{\mathsf{T}})^{\mathsf{T}} = A$$
+\end{theorem}
+
+\begin{example}
+Let $A = \bmat{-1 & 1 \\ 2 & -3 \\ 4 & -5}$ and $B = \bmat{0 & 1 \\ 5 & 4 \\ 3 & -2}$. Solve for $X$ in the matrix equation $4X\tpse - 3A = B$.
+\begin{align*}
+4X\tpse = B + 3A &\Longrightarrow X\tpse = \frac{1}{4}(B + 3A) \\
+&\Longrightarrow (X\tpse)\tpse = \left[\frac{1}{4}(B + 3A)\right]\tpse \\
+X = \left[\frac{1}{4}B + \frac{3}{4}A\right]\tpse &= \left[\bmat{0 & 1/4 \\ 5/4 & 1 \\ 3/4 & -1/2} + \bmat{-3/4 & 3/4 \\ 3/2 & -9/4 \\ 3 & -15/4}\right]\tpse \\\\
+&=\bmat{-3/4 & 11/4 & 15/4 \\ 1 & -5/4 & -17/4}
+\end{align*}
+\end{example}
+
+
+\begin{definition}
+Let $A = [a_{ij}]_{m \times n}$ and $B = [b_{ij}]_{n \times p}$, we define a product of $A$ and $B$, denoted by $A \times B = [c_{ij}]_{m \times p}$  where $\displaystyle c_{ij} = \bmat{a_{i1} & a_{i2} & \cdots a_{in}} \bmat{b_{1j} \\ \vdots \\ b_{nj}} = a_{i1}b_{1j} + a_{i2}b_{2j} + \cdots + a_{in}b_{nj}$.
+\end{definition}
+
+\begin{example}
+Find $AB$ and $BA$\footnote{The underbraces under the matrices are simply visuals and should not be placed when solving.}
+\begin{enumerate}
+    \item $$A = \underbrace{\bmat{1 & 2 & -1 \\ 3 & 1 & 4}}_{2 \times 3}, \quad B = \underbrace{\bmat{-2 & 5 \\ 4 & -3 \\ 2 & 1}}_{3 \times 2}$$
+    \begin{enumerate}
+        \item \begin{align*}
+            AB &= \bmat{1(-2) + 2(4) + (-1)(2) & 1(5) + 2(-3) + (-1)(1) \\ 3(-2) + 1(4) + (-1)(2) & 3(5) + 1(-3) + 4(1)} \\
+            &= \bmat{4 & -2 \\ 6 & 16}
+        \end{align*}
+
+        \item \begin{align*}
+            BA &= \bmat{-2 & 5 \\ 4 & -3 \\ 2 & 1} \bmat{1 & 2 & -1 \\ 3 & 1 & 4} \\
+            &= \bmat{-2(1) + 5(3) & -2(2) + 5(1) & -2(-1) + 5(4) \\ 4(1) + (-3)(3) & 4(2) + (-3)(1) & 4(-1) + (-3)(4) \\ 2(1) + 1(3) & 2(2) + 1(1) & 2(-1) + 1(4)} \\
+            & = \bmat{13 & 1 & 22 \\ -5 & 5 & -16 \\ 5 & 5 & 2}
+        \end{align*}
+    \end{enumerate}
+
+    \item $$A = \bmat{1 & 2 \\ 1 & 1}, \quad B = \bmat{-1 & 2 \\ 1 & -1}$$
+    \begin{enumerate}
+        \item \begin{align*}
+            AB &= \bmat{1(-1) + 2(1) & 1(2) + 2(-1) \\ 1(-1) + 1(1) & 1(2) + 1(-1)} \\
+            &=\bmat{1 & 0 \\ 0 & 1}
+        \end{align*}
+        \item \begin{align*}
+            BA &= \bmat{-1(1) + 2(1) & -1(2) + 2(1) \\ 1(1) + (-1)(1) & 1(2) + (-1)(1)} \\
+            &= \bmat{1 & 0 \\ 0 & 1}
+        \end{align*}
+    \end{enumerate}
+\end{enumerate}
+\end{example}
+
+\begin{theorem}
+Let $A, B, C$ be matrices of suitable size and $c \in \mathbb{R}$,
+
+\begin{enumerate}
+    \item If $A \in M_{m \times n}(\mathbb{R})$ then
+    \begin{enumerate}
+        \item $I_mA = A = AI_n$
+        \item $A0_{n \times p} =0_{m \times p}$ and $0_{q \times m}A = 0_{q \times n}$
+    \end{enumerate}
+    \item $(AB)C = A(BC)$
+    \item $A(B + C) = AB + AC$ and $(A + B)C = AC + BC$
+    \item $c(AB) = (cA)B = A(cB)$
+    \item $(AB)\tpse = B\tpse A\tpse$
+\end{enumerate}
+\end{theorem}

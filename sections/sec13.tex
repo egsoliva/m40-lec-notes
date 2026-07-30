@@ -1,0 +1,245 @@
+\newpage
+\section{Eigenvalues and Eigenvectors}
+
+\begin{definition}
+Let $A \in M_n(\RR)$. Then $\lambda \in \RR$ is called an \textbf{eigenvalue} of $A$ if there exists nonzero $v \in M_{n \times 1}(\RR)$ such that
+$$Av = \lambda v$$
+Such a vector $v$ is called an \textbf{eigenvector} of $A$ associated to $A$.
+\end{definition}
+
+\begin{remark}
+Let $A \in M_n(\RR)$
+\begin{enumerate}
+    \item We impose the condition that $v \notin 0_{n \times 1}$ since $A0_{n \times 1} = \lambda 0_{n \times 1}$ is true for any $\lambda \in \RR$.
+    \item $v$ is an eigenvector of $A$ iff $v$ is a scalar multiple of $Av$.
+\end{enumerate}
+\end{remark}
+
+\begin{example}
+\leavevmode
+\begin{enumerate}
+    \item Let $v \in M_{n \times 1}(\RR)$ be nonzero 
+    \begin{itemize}
+        \item $I_nv = 1v$ \\
+        Therefore, $\lambda = 1$ is an eigenvalue of $I_n$ where associated eigenvectors are any nonzero $v \in M_{n \times 1}(\RR)$
+        \item $0_{n \times n}v = 0_{n \times 1} = 0v$ \\
+        Therefore, $\lambda = 0$ is an eigenvalue of $0_{n \times n}$ where associated eigenvectors are nonzero $v \in M_{n \times 1}(\RR)$.
+    \end{itemize}
+    \item Let $A = \bmat{0 & 2 \\ 2 & 0}$
+    \begin{itemize}
+        \item $A\bmat{1 \\ 1} = \bmat{2 \\ 2} = 2\bmat{1 \\ 1}$ \\
+        $\therefore \lambda_1 = 2$ is an eigenvalue of $A$ with associated eigenvector $v_1 =\bmat{1 \\ 1}$.
+        \item $A\bmat{-1 \\ 1} = \bmat{2 \\ -2} = -2\bmat{1 \\ -1}$ \\
+        $\therefore \lambda_2 = -2$ is an eigenvalue of $A$ with associated eigenvector $v_2 = \bmat{-1 \\ 1}$.
+    \end{itemize}
+    \item Let $A = \bmat{0 & 2 & 2 \\ 2 & 0 & 2 \\ 2 & 2 & 0}$.
+    \begin{itemize}
+        \item $A\bmat{1 \\ 1 \\ 1} = \bmat{4 \\ 4 \\ 4} = 4\bmat{1 \\ 1 \\ 1}$ \\
+        $\therefore \lambda_1 = 4$ is an eigenvalue of $A$ with associated eigenvector $v_1 = \bmat{1 \\ 1 \\ 1}$.
+        \item $A\bmat{1 \\ 0 \\ -1} = \bmat{-2 \\ 0 \\ 2} = -2\bmat{1 \\ 0 \\ -1}$ \\
+        $\therefore \lambda_2 = -2$ is an eigenvalue of $A$ with associated eigenvector $v_2 = \bmat{1 \\ 0 \\ -2}$.
+    \end{itemize}
+\end{enumerate}
+\end{example}
+
+\newpage
+\begin{definition}
+Let $A \in M_n(\RR)$.
+\begin{enumerate}
+    \item The \textbf{characteristic polynomial} of $A$ is 
+    $$p_A(x) = \det(A - xI_n)$$
+    $$=\vmat{a_{11} - x & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} - x & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{n1} & a_{n2} & \cdots & a_{nn} - x}$$
+    \item The \textbf{characteristic equation} of $A$ is $p_A(x) = 0$.
+\end{enumerate}
+\end{definition}
+
+\begin{remark}
+Let $A \in M_n(\RR)$.
+\leavevmode
+\begin{enumerate}
+    \item $p_A(x)$ is a polynomial of degree $n$ with leading coefficients $(-1)^n$ and constant term $\det A$.
+    \item $\lambda \in \RR$ is an eigenvalue of $A$ iff $p_A(\lambda) = 0$
+    \item If $p_A(x)$ has no real roots, then $A$ has no (real) eigenvalues. 
+    \item The \textbf{algebraic multiplicity} of $\lambda$ is the multiplicity of $\lambda$ as a root of $p_A(x)$, denoted by $a(\lambda)$
+\end{enumerate}
+\end{remark}
+
+\begin{definition}
+Let $A \in M_n(\RR)$ and $\lambda \in \RR$ be an eigenvalue of $A$. Then
+$$E(A, \lambda):= N(A - \lambda I_n)$$
+is called the \textbf{eigenspace of $A$ associated to $\lambda$}.
+\end{definition}
+
+\begin{remark}
+\leavevmode
+\begin{enumerate}
+    \item $E(A, \lambda)$ is an eigenspace of $M_{n \times 1}(\RR)$. The \textbf{geometric multiplicity} of $\lambda$ is $g(\lambda) = \dim E(A, \lambda) = \upsilon(A - \lambda I_n)$.
+    \item The eigenvectors of $A$ associated to $\lambda$ are the nonzero vectors in $E(A, \lambda)$. Thus, $\mu \in \RR$ is NOT an eigenvalue of $A$ iff $N(A - \mu I_n) = \{\vec{0}\}$.
+    \item To find (a basis for) $E(A, \lambda)$, solve for $v$ in $(A - \lambda I_n)_v = 0_{n \times 1}$ (by GJR/GE).
+\end{enumerate}
+\end{remark}
+
+\begin{example}
+Find the eigenvalues and corresponding eigenspaces of a matrix $A$ where,
+$$A = \bmat{0 & 2 \\ 2 & 0}$$
+and identify the algebraic and geometric multiplicity of each eigenvalue.
+\end{example}
+
+\textit{Solution.}
+
+Let us first solve for its characteristic polynomial $p_A(x)$,
+$$p_A(x) = \vmat{-x & 2 \\ 2 & -x} = x^2 - 4$$
+Therefore, the eigenvalues of $A$: $2, -2$
+
+\begin{itemize}
+    \item $E(A, 2)$ \\
+    Forming the augmented matrix,
+    $$\begin{amatrix}{2}
+        -2 & 2 & 0 \\
+        2 & -2 & 0 \\
+    \end{amatrix} \xrightarrow{\text{RREF}}
+    \begin{amatrix}{2}
+        1 & -1 & 0 \\
+        0 & 0 & 0 \\
+    \end{amatrix} \longleftrightarrow
+    a - b = 0
+    $$
+    Since there are no leading entries in the second column, let $b = t$, then, $a = t$,
+    $$E(A, 2) = \left\{\bmat{t \\ t} \suchthat t \in \RR\right\} = \spn\left\{\bmat{1 \\ 1}\right\}$$
+    Since the set only contains one element, it is a basis for $E(A, 2)$. And $a(2) = 1 = g(2)$.
+
+    \item $E(A, -2)$ \\
+    Forming the augmented matrix,
+    $$\begin{amatrix}{2}
+        2 & 2 & 0 \\
+        2 & 2 & 0 \\
+    \end{amatrix} \xrightarrow{\text{RREF}}
+    \begin{amatrix}{2}
+        1 & 1 & 0 \\
+        0 & 0 & 0 \\
+    \end{amatrix} \longleftrightarrow a + b = 0
+    $$
+    Let $b = t$, then, $a = -t$,
+    $$E(A, -2) = \left\{\bmat{-t \\ t} \suchthat t \in \RR\right\} = \spn\left\{\bmat{-1 \\ 1}\right\}$$
+    Since the set only contains one element, it is a basis for $E(A, -2)$ and $a(-2) = 1 = g(-2)$.
+\end{itemize}
+
+\begin{example}
+Find the eigenvalues and corresponding eigenspaces of a matrix $B$ where, 
+$$B = \bmat{4 & 2 & 3 \\ 2 & 1 & 2 \\ -1 & -2 & 0}$$
+and identify the algebraic and geometric multiplicity of each eigenvalue.
+\end{example}
+
+\textit{Solution.} 
+
+Let us first solve for its characteristic polynomial $p_B(x)$,
+$$p_B(x) = \vmat{4 - x & 2 & 3 \\ 2 & 1 - x & 2 \\ -1 & -2 & -x} \xrightarrow{\substack{R_1 \leftarrow R_3 + R_1 \\ C_3 \leftarrow C_3 - C_1}} \vmat{3 - x & 0 & 0 \\ 2 & 1 - x & 0 \\ -1 & -2 & 1-x} = (1 - x)^2(3 - x)$$
+Therefore, the eigenvalues of $B$: $1, 3$
+\begin{itemize}
+    \item $E(A, 1)$ \\
+    Forming the augmented matrix,
+    $$\begin{amatrix}{3}
+        3 & 2 & 3 & 0 \\
+        2 & 0 & 2 & 0 \\
+        -1 & -2 & -1 & 0
+    \end{amatrix} \xrightarrow{\text{RREF}}
+    \begin{amatrix}{3}
+        1 & 0 & 1 & 0 \\
+        0 & 1 & 0 & 0 \\
+        0 & 0 & 0 & 0
+    \end{amatrix} \longleftrightarrow
+    \begin{cases}
+        a + c = 0 \\ b = 0
+    \end{cases}
+    $$
+    Let $c = t$, then, $a = -t$,
+    $$E(A, 1) = \left\{\bmat{-t \\ 0 \\ t} \suchthat t \in \RR\right\} = \spn\left\{\bmat{-1 \\ 0 \\ 1}\right\}$$
+    Since it only contains one element it is a basis for the eigenspace. And $a(1) = 2 \neq 1 = g(1)$
+
+    \item $E(A, 3)$ \\
+    Forming the augmented matrix,
+    $$\begin{amatrix}{3}
+        1 & 2 & 3 & 0 \\
+        2 & -2 & 2 & 0 \\
+        -1 & -2 & -3 & 0 
+    \end{amatrix} \xrightarrow{\text{RREF}} 
+    \begin{amatrix}{3}
+        1 & 2 & 3 & 0 \\
+        0 & 1 & \frac{2}{3} & 0 \\
+        0 & 0 & 0 & 0
+    \end{amatrix} \longleftrightarrow
+    \begin{cases}
+        a + 2b + 3c = 0 \\
+        b + \frac{2}{3}c = 0
+    \end{cases}$$
+    Let $c = t$, then, $b = -\dfrac{2}{3}t, a = -\dfrac{5}{3}t$,
+    $$E(A, 3) = \left\{\bmat{-\frac{5}{3}t \\ -\frac{2}{3}t \\ t} \suchthat t \in \RR\right\} = \spn\left\{\bmat{-\frac{5}{3} \\ -\frac{2}{3} \\ 1} \suchthat t \in \RR\right\}$$
+    Since it only contains one element it is a basis, and $a(3) = 1 = g(3)$.
+\end{itemize}
+
+\begin{example}
+Find the eigenvalues and corresponding eigenspaces of a matrix $C$ where, 
+$$C = \bmat{1 & 2 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & -1 & 0 \\ 0 & 0 & 5 & 1}$$
+and identify the algebraic and geometric multiplicity of each eigenvalue.
+\end{example}
+
+Let us first determine the characteristic polynomial $p_C(x)$,
+$$p_C(x) = \vmat{1 - x & 2 & 0 & 0 \\ 0 & 1 - x & 0 & 0 \\ 0 & 0 & -1 - x & 0 \\ 0 & 0 & 5 & 1 - x}$$
+Performing cofactor expansion along column 1,
+$$=(1-x)\vmat{1 - x & 0 & 0 \\ 0 & -1 - x & 0 \\ 0 & 5 & 1- x} = (1-x)^3(-1-x)$$
+Therefore, the eigenvalues of $C$: $1, -1$
+\begin{itemize}
+    \item $E(A, 1)$ \\
+    $$\begin{amatrix}{4}
+        0 & 2 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 0 \\
+        0 & 0 & -2 & 0 & 0 \\
+        0 & 0 & 5 & 0 & 0
+    \end{amatrix} \xrightarrow{\text{RREF}}
+    \begin{amatrix}{4}
+        0 & 1 & 0 & 0 & 0 \\ 
+        0 & 0 & 1 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 0
+    \end{amatrix} \longleftrightarrow
+    \begin{cases}
+        b = 0 \\
+        c = 0
+    \end{cases}
+    $$
+    Let $a = s$ and $d = t$, then,
+    $$E(A, 1) = \left\{\bmat{s \\ 0 \\ 0 \\ t} \suchthat s, t \in \RR\right\} = \left\{s\bmat{1 \\ 0 \\ 0 \\ 0} + t \bmat{0 \\ 0 \\ 0 \\ 1} \suchthat s, t \in \RR\right\}$$
+    $$=\spn\left\{\bmat{1 \\ 0 \\ 0 \\ 0}, \bmat{0 \\ 0 \\ 0 \\ 1}\right\}$$
+    Since they are not scalar multiples of each other, it is a basis for the eigenspace. And $a(1) = 3\neq 2 = g(1)$.
+    \item $E(A, -1)$
+    $$\begin{amatrix}{4}
+        2 & 2 & 0 & 0 & 0 \\
+        0 & 2 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 5 & 2 & 0 
+    \end{amatrix} \xrightarrow{\text{RREF}}
+    \begin{amatrix}{4}
+        1 & 1 & 0 & 0 & 0 \\
+        0 & 1 & 0 & 0 & 0 \\
+        0 & 0 & 1 & \frac{2}{5} & 0 \\
+        0 & 0 & 0 & 0 & 0
+    \end{amatrix} \longleftrightarrow
+    \begin{cases}
+        a + b = 0 \\
+        b = 0 \\
+        c + \frac{2}{5}d = 0
+    \end{cases}
+    $$
+    Let $d = t$, then, $a = 0, c = -\dfrac{2}{5}t$,
+    $$E(A, -1) = \left\{\bmat{0 \\ 0 \\ -\frac{2}{5}t \\ t}\suchthat t \in \RR\right\} = \spn\left\{\bmat{0 \\ 0 \\ -\frac{2}{5} \\ 1}\right\}$$
+    Since it only contains one element, it is a basis for the eigenspace. And $a(-1) = 1 = g(-1)$.
+\end{itemize}
+
+\ul{\textbf{Question}.}
+
+Now, given a square matrix when is it nonsingular if we only know its eigenvalue? Let us observe. Suppose that there exists a matrix $A \in M_n(\RR)$. Then, $A$ is nonsingular iff $\det A \neq 0$. This implies that $p_A(0) \neq 0$ and $0$ is not a root of the characteristic polynomial, hence $0$ is not an eigenvalue of $A$.
+
+\begin{theorem}
+Let $A \in M_n(\RR)$. Then $A$ is nonsingular iff $0$ is not an eigenvalue of $A$.
+\end{theorem}
+

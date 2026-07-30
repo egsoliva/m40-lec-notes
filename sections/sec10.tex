@@ -1,0 +1,52 @@
+\newpage
+\section{Gram-Schmidt Orthonormalization Process}
+\begin{definition}[Gram-Schmidt Orthonormalization]
+Let $B = \{v_1, v_2, \dots, v_n\}$ be a basis for $V$.
+\begin{enumerate}
+    \item Put $w_1 = v_1$.
+    \item Put $w_2 = v_2 - \operatorname{proj}_{w_1}v_2$.
+    \item Put $w_3 = v_3 - \operatorname{proj}_{\{w_1, w_2\}}v_3$
+    \item Combine the above process to get an orthogonal set $$\{w_1, w_2, \dots, w_n\} = S$$
+    \item Put $w_n = v_n - \operatorname{proj}_Sv_n$,
+    $$B' = \{w_1, w_2, \dots, w_n\}$$
+    \item Put $b_i = \dfrac{w_i}{\lVert w_i \rVert}$. Then $B'' = \{b_1, b_2, \dots, b_n\}$ is an orthonormal basis for $V$.
+\end{enumerate}
+\end{definition}
+
+\begin{remark}
+\leavevmode
+\begin{enumerate}
+    \item The output of a Gram-Schmidt Process is not unique. Hence a permutation $\pi$ could lead to a different basis.
+    \item The recursive definition of the process is:
+    $$w_k = v_k - \sum_{i = 1}^{k-1}\frac{\langle v_k, w_i\rangle}{\langle w_i, w_i \rangle}w_i$$
+\end{enumerate}
+\end{remark}
+
+\begin{theorem}
+Every finite-dimensional inner product space $V$ has an orthonormal basis.
+\end{theorem}
+
+\begin{example}
+Transform the basis $S = \{(1, 1, 1), (1, -1, -1), (0, 1, 0)\}$ for $\RR^3$ into an orthonormal basis under the standard inner product.
+\end{example}
+
+\textit{Solution.} Let us apply Gram-Schmidt Process,
+\begin{itemize}
+    \item Put $w_1 = v_1 = (1,1, 1)$
+    \item Put $w_2 = v_2 - \operatorname{proj}_{w_1}v_2$ 
+    $$= v_2 - \frac{\langle w_1, v_2\rangle}{\langle w_1, w_1\rangle}w_1$$
+    $$=(1, -1, -1) + \frac{1}{3}(1, 1, 1) = \left(\frac{4}{3}, -\frac{2}{3}, -\frac{2}{3}\right)$$
+    \item Put $w_3 = v_3 - \operatorname{proj}_{w_1}v_3 - \operatorname{proj}_{w_2}v_3$
+    $$=v_3 - \frac{\langle w_1, v_3\rangle}{\langle w_1, w_1 \rangle}w_1 - \frac{\langle w_2, v_3 \rangle}{\langle w_2, w_2 \rangle}w_2$$
+    $$=(0, 1, 0) - \frac{1}{3}(1, 1, 1) + \frac{1}{4}\left(\frac{4}{3}, -\frac{2}{3}, -\frac{2}{3} \right)$$
+    $$=\left(0, \frac{1}{2}, -\frac{1}{2}\right)$$
+\end{itemize}
+
+Normalizing each $w_i$,
+\begin{itemize}
+    \item $w_1 = \dfrac{1}{\sqrt{3}}(1, 1, 1)$
+    \item $w_2 = \sqrt{\dfrac{3}{8}}\left(\dfrac{4}{3}, -\dfrac{2}{3}, -\dfrac{2}{3}\right)$
+    \item $w_3 = \sqrt{2}\left(0, \dfrac{1}{2}, -\dfrac{1}{2}\right)$
+\end{itemize}
+
+Therefore, $\displaystyle B = \left\{\frac{1}{\sqrt{3}}(1, 1, 1), \sqrt{\frac{3}{8}}\left(\frac{4}{3}, -\frac{2}{3}, -\frac{2}{3}\right), \sqrt{2}\left(0, \frac{1}{2}, -\frac{1}{2}\right)\right\}$ is an orthonormal basis for $\RR^3$.

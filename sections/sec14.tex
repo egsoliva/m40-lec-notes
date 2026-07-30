@@ -1,0 +1,346 @@
+\newpage
+\section{Similarity, Diagonalization, and Symmetric Matrices}
+\begin{definition}
+Let $A, B \in M_n(\RR)$. Then $A$ and $B$ are \textbf{similar} if there exists $P \in M_n(\RR)$ such that $B = P\inv AP$.
+\end{definition}
+
+\begin{remark}
+Let $A, B \in M_n(\RR)$ be similar, and $V$ be an $n$-dimensional vector space.
+\begin{enumerate}
+    \item Then $A$ and $B$ represent the same linear operator $T: U \to V$.
+    \item Then $A$ and $B$ are equivalent, hence $\rank A = \rank B$.
+\end{enumerate}
+\end{remark}
+
+\lline
+
+Now, let's explore some of the properties of similar matrices. Suppose that there exists $A, B \in M_n(\RR)$ such that $A$ and $B$ are similar. Then, it follows that $B = P\inv AP$ for some $P \in M_n(\RR)$.
+
+Since $A$ and $B$ are square matrices, we could obtain their determinant,
+\begin{align*}
+\det B & = \det(P\inv AP) \\
+&=\det(P\inv)\det A \det P \\
+&= \frac{1}{\det P}(\det A)(\det P) \\
+&=\det A
+\end{align*}
+
+Now let's observe their characteristic polynomials,
+\begin{align*}
+p_B(x) & = \det(B - xI_n) = \det(P\inv AP - xP\inv P) \\
+& = \det[(P\inv A - xP\inv(xI_n))P] \\
+& = \det[P\inv(A - xI_n)P] \\
+& = \det(A - xI_n) \\
+& = p_A(x)
+\end{align*}
+
+
+\begin{theorem}
+Let $A, B \in M_n(\RR)$ be similar. Then
+\begin{enumerate}
+    \item $\rank A = \rank B$ and $\upsilon(A) = \upsilon(B)$
+    \item $\det A = \det B$
+    \item $p_A(x) = p_B(x)$ (hence $A$ and $B$ have the same eigenvalues)
+    \item $A^k$ is similar to $B^k$ for all $k \in \ZZ^+$
+    \item $A^{\mathsf{T}}$ is similar to $B^{\mathsf{T}}$ 
+    \item If $A$ is nonsingular, then $B$ is nonsingular and $A\inv$ is similar to $B\inv$
+\end{enumerate}
+\end{theorem}
+
+\begin{definition}
+$A \in M_n(\RR)$ is said to be \textbf{diagonalizable} of $A$ is similar to a diagonal matrix, i.e. there exists $P \in M_n(\RR)$ such that $P\inv AP$ is diagonal.
+\end{definition}
+
+An example of this is suppose we have two matrices $A, P \in M_n(\RR)$, where,
+$$A = \bmat{0 & 1 \\ 1 & 0}, \quad P = \bmat{1 & -1 \\ 1 & 1}$$
+Then,
+$$P\inv AP = \bmat{1 & 0 \\ 0 & -1}$$
+Therefore, $A$ is diagonalizable.
+
+\ul{\textbf{Question.}} When is $A \in M_n(\RR)$ diagonalizable?
+
+$A$ is diagonalizable iff there exists a nonsingular matrix $P \in M_n(\RR)$ such that $P\inv AP = D = \diag(d_1, \dots, d_n)$. Let $P_i$ be column $i$ of $P$. Then $AP = PD$. Now
+
+
+\begin{theorem}
+$A \in M_n(\RR)$ is diagonalizable iff $A$ has $n$ linearly independent eigenvectors.
+\end{theorem}
+
+\lline
+
+To diagonalize $A \in M_n(\RR)$:
+\begin{enumerate}
+    \item Find the eigenvalues $\lambda_i$ of $A$.
+    \item Find bases for each eigenspace $E(A, \lambda_i)$.
+    \item Form the union $E$ of the bases found in (2). Then $E$ is linearly independent. If $|E| = n$, then $A$ is diagonalizable. Otherwise $A$ is not diagonalizable.
+    \item If $A$ is diagonalizable, then $P\inv AP = \diag(\lambda_1, \lambda_2, \dots, \lambda_n)$ where $\lambda_1, \lambda_2, \dots, \lambda_n \in \RR$ are the eigenvalues (counting algebraic multiplicities and column $i$ of $P$ is an eigenvector of $A$ associated to $\lambda_i$). We will denote the set of eigenvalues as $\sigma(A)$.
+\end{enumerate}
+
+\begin{example}
+Determine if the matrix $A$ is diagonalizable. If so, find diagonal $D$ and nonsingular $P$ such that $D = P\inv AP$. Where,
+$$A = \bmat{1 & 0 & 0 & 0 \\ 0 & 1 & 5 & -10 \\ 1 & 0 & 2 & 0 \\ 1 & 0 & 0 & 3}$$
+\end{example}
+
+\textit{Solution.} 
+
+We first compute for the characteristic polynomial $p_A(x)$,
+$$p_A(x) = \vmat{1 - x & 0 & 0 & 0 \\
+0 & 1 - x & 5 & -10 \\ 1 & 0 & 2 - x & 0 \\ 1 & 0 & 0 & 3 - x}$$
+By performing cofactor expansion along row 1,
+$$=1 - x \vmat{1 - x & 5 & -10 \\ 0 & 2 - x & 0 \\ 0 & 0 & 3 - x} =(1-x)^2(2-x)(3-x)$$
+Therefore, the eigenvalues of $A$: $1, 2, 3$
+
+\begin{itemize}
+    \item $E(A, 1)$
+    $$\begin{amatrix}{4}
+        0 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 5 & -10 & 0 \\
+        1 & 0 & 1 & 0 & 0 \\
+        1 & 0 & 0 & 2 & 0 
+    \end{amatrix} \xrightarrow{\text{RREF}}
+    \begin{amatrix}{4}
+        1 & 0 & 0 & 2 & 0 \\
+        0 & 0 & 1 & -2 & 0 \\
+        0 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 0 
+    \end{amatrix} \longleftrightarrow 
+    \begin{cases}
+        a + 2d = 0 \\
+        c - 2d = 0
+    \end{cases}
+    $$
+    Let $b = s$ and $d = t$, then, $a = -2t, c = 2t$,
+    $$E(A, 1) = \left\{\bmat{-2t \\ s \\ 2t \\ t} \suchthat s, t \in \RR\right\} = \spn\left\{\bmat{0 \\ 1 \\ 0 \\ 0}, \bmat{-2 \\ 0 \\ 2 \\ 1}\right\}$$
+    The two elements are not scalar multiples of each other. Hence, $\left\{\bmat{0 \\ 1 \\ 0 \\ 0}, \bmat{-2 \\ 0 \\ 2 \\ 1}\right\}$ is a basis for $E(A, 1)$. With $a(1) = 2 = g(1)$.
+
+    \item $E(A, 2)$
+    $$\begin{amatrix}{4}
+        -1 & 0 & 0 & 0 & 0 \\ 
+        0 & -1 & 5 & -10 & 0 \\
+        1 & 0 & 0 & 0 & 0 \\
+        1 & 0 & 0 & 0 & 1
+    \end{amatrix} \xrightarrow{\text{RREF}}
+    \begin{amatrix}{4}
+        1 & 0 & 0 & 1 & 0 \\
+        0 & 1 & -5 & 0 & 0 \\
+        0 & 0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 0 & 0 
+    \end{amatrix} \longleftrightarrow
+    \begin{cases}
+        a + d = 0 \\
+        b - 5c = 0 \\
+        d = 0
+    \end{cases}
+    $$
+    Let $c = t$, then, $a = 0, b = 5t$,
+    $$E(A, 2) = \left\{\bmat{0 \\ 5t \\ t \\ 0} \suchthat t \in \RR\right\} = \spn\left\{\bmat{0 \\ 5 \\ 1 \\ 0}\right\}$$
+    And since there is only one nonzero vector in the set it is a basis for $E(A, 2)$. And $a(2) = 1 = g(2)$.
+
+    \item $E(A, 3)$
+    $$\begin{amatrix}{4}
+        -2 & 0 & 0 & 0 & 0 \\
+        0 & -2 & 5 & -10 & 0 \\
+        1 & 0 & -1 & 0 & 0 \\
+        1 & 0 & 0 & 0 & 0 
+    \end{amatrix} \xrightarrow{\text{RREF}}
+    \begin{amatrix}{4}
+        1 & 0 & 0 & 0 & 0 \\
+        0 & 1 & 0 & 5 & 0 \\
+        0 & 0 & 1 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 0
+    \end{amatrix} \longleftrightarrow
+    \begin{cases}
+        a = 0 \\
+        b + 5d = 0 \\
+        c = 0
+    \end{cases}
+    $$
+    Let $d = t$, then, $b = -5t$,
+    $$E(A, 3) = \left\{\bmat{0 \\ -5t \\ 0 \\ t} \suchthat t \in \RR\right\} = \spn\left\{\bmat{0 \\ -5 \\ 0 \\ 1}\right\}$$
+    And since there is only one nonzero element in the set, it is a basis for $E(A, 3)$. And $a(3) = 1= g(3)$.
+
+    From this let us form the set $E$ which contains the elements of the basis of each eigenspace $E(A, \lambda_i)$ for all $\lambda_i$.\footnote{One could check that set $E$ is linearly independent.}
+    $$E = \left\{\bmat{0 \\ 1 \\ 0 \\ 0}, \bmat{-2 \\ 0 \\ 2 \\ 1}, \bmat{0 \\ 5 \\ 0 \\ 1}, \bmat{0 \\ -5 \\ 0 \\ 1}\right\}$$
+    And since $|E| = 4$, which is equal to the size of $A$. Thus, $A$ is diagonalizable with $D = P\inv AP$ where,
+    $$D = \bmat{1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 2 & 0 \\ 0 & 0 & 0 & 3}, \quad P = \bmat{0 & -2 & 0 & 0 \\ 1 & 0 & 5 & -5 \\ 0 & 2 & 1 & 0 \\ 0 & 1 & 0 & 1}$$
+    
+\end{itemize}
+\newpage
+The permutations of columns in $P$ must follow the placing of eigenvalues in $D$. Any permutation for muliplicities (i.e. $\sigma(A) = \{1, 2, 1, 3\} \Longrightarrow D = \diag(1, 2, 1, 3)$) are allowed. To further illustrate this let's find another solution for the example above.
+
+$$D = \diag(1, 2, 1, 3) = \bmat{1 & 0 & 0 & 0 \\ 0 & 2 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 3}, \quad P = \bmat{0 & 0 & -2 & 0 \\ 1 & 5 & 0 & -5 \\ 0 & 1 & 2 & 0 \\ 0 & 0 & 1 & 1}$$
+
+One could check that this is true,\footnote{This can be easily verified using Matlab or Numpy.} and any permutation of the diagonal entries as long as the placing of vectors from $E$ must follow the order in $D$.
+
+
+
+\begin{theorem}
+Let $A \in M_n(\RR)$. Then $A$ is diagonalizable iff both the following conditions hold:
+\begin{enumerate}
+    \item Every root of $p_A(x)$ is real.
+    \item For every eigenvalue $\lambda$ of $A$, $a(\lambda) = g(\lambda)$.
+\end{enumerate}
+\end{theorem}
+
+\begin{remark}
+Let $A \in M_n(\RR)$.
+\begin{enumerate}
+    \item For every eigenvalue $\lambda$ of $A_i$, $a(\lambda) \geq g(\lambda) \geq 1$.
+    \item If $p_A(x)$ has exactly $n$ distinct real roots, then $A$ is diagonalizable.
+\end{enumerate}
+\end{remark}
+
+\lline
+
+\ul{\textbf{Recall.}}
+\begin{enumerate}
+    \item Standard inner product on $M_{n \times 1}(\RR)$,
+    $$\langle x, y \rangle = x^{\mathsf{T}} y, \quad \forall x, y \in M_{n \times 1}(\RR)$$
+    \item $S = \{v_1, v_2, \dots, v_n\}$ is an orthonormal set iff $\langle v_i, v_j \rangle = \begin{cases}
+        0, \quad i \neq j \\
+        1, \quad i = j
+    \end{cases} = \delta_{ij}$
+\end{enumerate}
+
+\ul{\textbf{Question.}} When are the columns of $P \in M_n(\RR)$ orthonormal under the standard inner product of $M_{n \times 1}(\RR)$?
+
+Let $P \in M_n(\RR)$, with columns $P_1, P_2, \dots, P_n$. Then $\{P_1, P_2, \dots, P_n\}$ is an orthonormal set iff:
+$$\langle P_i, P_j \rangle = \delta_{ij}, \quad \forall i, j$$
+$$P_i^{\mathsf{T}} P_j = \delta_{ij}, \quad \forall i, j$$
+$$(\text{row } i \text{ of } P^{\mathsf{T}})(\text{column } j \text{ of } P) = \delta_{ij},\quad \forall i, j$$
+$$P^{\mathsf{T}} P = I_n$$
+
+\begin{definition}
+$P \in M_n(\RR)$ is \textbf{orthogonal} if $P^{\mathsf{T}} P = I_n$.
+\end{definition}
+
+\begin{theorem}
+Let $P \in M_n(\RR)$. Then the following are equivalent:
+\begin{enumerate}
+    \item $P$ is orthogonal.
+    \item $P$ is nonsingular with $P\inv = P^{\mathsf{T}}$.
+    \item The columns of $P$ form an orthonormal basis for $M_{n \times 1}(\RR)$ (under the standard inner product).
+\end{enumerate}
+\end{theorem}
+
+\newpage
+\begin{example}
+Shown below are some examples of orthogonal matrices that can be verified by simply pairing the rows and getting their inner product (respectively pairing the columns and getting their inner product). It is not hard to show that the inner product is 0.
+\leavevmode
+\begin{enumerate}
+    \item $$\bmat{\cos\theta & -\sin\theta \\ \sin\theta & \cos\theta}, \quad \forall \theta \in \RR$$
+    \item $$\bmat{-2/3& 2/3 & 1/3 \\ 2/3 & 1/3 & 2/3 \\ 1/3 & 2/3 & -2/3}$$
+\end{enumerate}
+\end{example}
+
+\begin{remark}
+Let $P, Q \in M_n(\RR)$ be orthogonal
+\leavevmode
+\begin{enumerate}
+    \item Then $PQ$ is also orthogonal
+    $$(PQ)^{\mathsf{T}}(PQ) = Q^{\mathsf{T}} P^{\mathsf{T}} PQ = I_n$$
+    \item $\det P = \pm 1$
+    \begin{align*}
+    (\det P^{\mathsf{T}})(\det P) &= \det I_n \\
+    (\det P)^2 &= 1 \\
+    \therefore \det P &= \pm 1
+    \end{align*}
+    \item Let $D \in M_n(\RR)$ be diagonal and $A = PDP^{\mathsf{T}}$. Then
+    \begin{align*}
+    A^{\mathsf{T}} &= (PDP^{\mathsf{T}})^{\mathsf{T}} \\
+    &=(P^{\mathsf{T}})^{\mathsf{T}} D^{\mathsf{T}} P^{\mathsf{T}} \\
+    &=PDP\inv = A
+    \end{align*}
+\end{enumerate}
+\end{remark}
+
+\begin{definition}\label{def:14.4}
+Let $A \in M_n(\RR)$. Then
+\begin{enumerate}
+    \item $A$ is \textbf{symmetric} if $A^{\mathsf{T}} = A$.
+    \item $A$ is \textbf{orthogonally diagonalizable} if there exists an orthogonal $P \in M_n(\RR)$ such that $P^{\mathsf{T}} AP$ is diagonal.
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Spectral Decomposition Theorem for Symmetric Matrices]
+\leavevmode
+$A \in M_n(\RR)$ is orthogonally diagonalizable iff $A$ is symmetric.
+\end{theorem}
+
+\lline
+
+To orthogonally diagonalize a symmetric matrix $A \in M_n(\RR)$.
+\begin{enumerate}
+    \item Find the eigenvalues $\lambda_i$ of $A$.
+    \item Find \textbf{orthonormal basis} of $E(A, \lambda_i)$ using Gram-Schmidt Process.
+    \item Form the union $E = \{v_1, v_2, \dots, v_n\}$ of the orthonormal bases obtained in (2). Then $E$ is also an orthonormal basis for $M_{n\times 1}(\RR)$.
+    \item $D = P^{\mathsf{T}} AP$ where $D = \diag(\lambda_1, \lambda_2, \dots, \lambda_n)$ and $P = \bmat{v_1 & v_2 & \cdots & v_n}$.
+\end{enumerate}
+
+
+\begin{example}
+Let $A = \bmat{0 & 2 & 2 \\ 2 & 0 & 2 \\ 2 & 2 & 0}$. Find an orthogonal matrix $P$ and diagonal matrix $D$ such that $D = P^{\mathsf{T}} AP$.
+
+\textit{Solution.}
+
+Find the characteristic polynomial $p_A(x)$.
+\item $$p_A(x) = \vmat{-x & 2 & 2 \\ 2 & -x & 2 \\ 2 & 2 & -x} = -(x+2)^2(x - 4)$$
+Therefore, the eigenvalues of $A$: $-2, 4$
+
+\begin{itemize}
+    \item $E(A, -2)$
+    $$\begin{amatrix}{3}
+        2 & 2 & 2 & 0 \\
+        2 & 2 & 2 & 0 \\
+        2 & 2 & 2 & 0 
+    \end{amatrix} \xrightarrow{\text{RREF}}
+    \begin{amatrix}{3}
+        1 & 1 & 1 & 0 \\ 
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0
+    \end{amatrix} \longleftrightarrow
+    \begin{cases}
+        a + b + c = 0 \\
+    \end{cases}
+    $$
+    Let $b = s$ and $c = t$, then, $a = -s - t$,
+    $$E(A, -2) = \left\{\bmat{-s-t \\ s \\ t} \suchthat s, t \in \RR\right\} = \spn\left\{\bmat{-1 \\ 1 \\ 0}, \bmat{-1 \\ 0 \\ 1}\right\}$$
+    Because they are not scalar multiples of each other, it is a basis for $E(A, -2)$.
+
+    \begin{enumerate}
+        \item Put $w_1 = v_1$,
+        $$w_1 = \bmat{-1 \\ 1 \\ 0}$$
+        And since $\lVert w_1 \rVert = \sqrt{2}$,
+        $$w_1' = \frac{1}{\sqrt{2}}\bmat{-1 \\ 1 \\ 0} = \bmat{-1/\sqrt{2} \\ 1/\sqrt{2} \\ 0}$$
+
+        \item Put $w_2 = v_2 - \dfrac{\langle v_2, w_1\rangle}{\langle w_1, w_1 \rangle}w_1$,
+        $$w_2 = \bmat{-1 \\ 0 \\ 1} - \frac{1}{2}\bmat{-1 \\ 1 \\ 0} = \bmat{-1/2 \\ -1/2 \\ 1}$$
+        And since $\lVert w_2 \rVert = \sqrt{\dfrac{3}{2}}$,
+        $$w_2' = \sqrt{\frac{2}{3}}\bmat{-1/2 \\ -1/2 \\ 1} = \bmat{-1/\sqrt{6} \\ -1/\sqrt{6} \\ 2/\sqrt{6}}$$
+    \end{enumerate}
+
+    \item $E(A, 4)$
+    $$\begin{amatrix}{3}
+        -4 & 2 & 2 & 0 \\
+        2 & -4 & 2 & 0 \\
+        2 & 2 & -4 & 0 
+    \end{amatrix} \xrightarrow{\text{RREF}}
+    \begin{amatrix}{3}
+        1 & 0 & -1 & 0 \\
+        0 & 1 & -1 & 0 \\
+        0 & 0 & 0 & 0
+    \end{amatrix} \longleftrightarrow
+    \begin{cases}
+        a - c = 0 \\
+        b - c = 0
+    \end{cases}
+    $$
+    Let $c = t$, then, $a = t, b = t$,
+    $$E(A, 4) = \left\{\bmat{t \\ t \\ t} \suchthat t \in \RR\right\} = \spn\left\{\bmat{1 \\ 1 \\ 1}\right\}$$
+    And since it contains a nonzero element it is a basis for $E(A, 4)$. However, we should still normalize this. Since $\lVert w_1 \rVert = \sqrt{3}$, then,
+    $$w_3' = \frac{1}{\sqrt{3}}\bmat{1 \\ 1 \\ 1} = \bmat{1/\sqrt{3} \\ 1/\sqrt{3} \\ 1/\sqrt{3}}$$
+    Therefore, 
+    $$\boxed{D = \bmat{-2 & 0 & 0 \\ 0 & -2 & 0 \\ 0 & 0 & 4}, \quad P = \bmat{-1/\sqrt{2} & -1/\sqrt{6} & 1/\sqrt{3} \\ 1/\sqrt{2} & -1/\sqrt{6} & 1/\sqrt{3} \\ 0 & 2/\sqrt{6} & 1/\sqrt{3}}}$$
+\end{itemize}
+
+\end{example}

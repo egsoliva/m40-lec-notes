@@ -1,0 +1,69 @@
+\newpage
+\section{The Fundamental Subspaces and Rank of a Matrix}
+
+\begin{definition}
+Let $A \in M_{m \times n}(\RR)$ with rows $R_1, R_2, \dots, R_m$ and columns $C_1, C_2, \dots, C_n$.
+\begin{enumerate}
+    \item The \textbf{row space} of $A$ is $R(A) := \operatorname{span}\{R_1, R_2, \dots, R_m\} \leq M_{1 \times n}(\RR)$
+    \item The \textbf{column space} of $A$ is $C(A) := \operatorname{span}\{C_1, C_2, \dots, C_n\} \leq M_{m \times 1}(\RR)$
+    \item The \textbf{row rank} (respectively \textbf{column rank}) of $A$ is $\dim R(A)$ (respectively $\dim C(A)$)
+\end{enumerate}
+\end{definition}
+\leavevmode \\
+To find bases for $R(A)$ and $C(A)$:
+\begin{enumerate}
+    \item Use elementary row operations to bring $A$ to a matrix $U$ in REF.
+    \item Basis for $C(A) = $ columns of $A$ corresponding to columns of $U$ containing leading entries.
+    \item Basis for $R(A) = $ nonzero rows of the REF matrix $U$.
+\end{enumerate}
+
+\begin{theorem}
+The row rank and column rank of any $A \in M_{m \times n}(\RR)$ are equal.
+\end{theorem}
+
+\begin{definition}
+The rank of $A \in M_{m \times n}(\RR)$, denoted by $\rank A$, is the common value of the row rank and column ranks of $A$.
+\end{definition}
+
+\begin{definition}
+Let $A \in M_{m \times n}(\RR)$. The null space of $A$, denoted by $N(A)$, is the solution set of the system $Ax = 0_{m \times 1}$. That is,
+$$N(A) = \{x \in M_{n \times 1}(\RR) \mid Ax = 0_{m \times 1}\}$$
+\end{definition}
+
+\begin{remark}
+If $A \in M_{m \times n}(\RR)$, then $N(A) \leq M_{n \times 1}(\RR)$. The \textbf{nullity} of $A$, denoted by $\upsilon(A)$, is $\dim N(A)$.
+\end{remark}
+
+To find $N(A)$, solve for $x$ in the system $Ax = 0_{m \times 1}$.
+
+\begin{example}
+For each matrix $A$, find a basis for $N(A)$. Identify the nullity of $A$.
+$$A = \bmat{1 & 0 \\ 4 & -2 \\ 2 & 3}$$
+\end{example}
+
+\textit{Solution.} 
+
+By reducing matrix $A$ to RREF, we get
+$$\bmat{1 & 0 \\ 0 & 1 \\ 0 & 0} \longrightarrow 
+\begin{cases}
+x_1 = 0 \\
+x_2 = 0
+\end{cases}
+$$
+Therefore, $N(A) = \left\{\bmat{0 \\ 0}\right\}$ and $\upsilon(A) = 0$.
+
+
+\begin{example}
+Find a basis for the given system of equations
+$$
+\begin{cases}
+x_1 + 2x_3 + x_5 = 0 \\
+x_2 + x_3 + x_5 = 0 \\
+x_4 - x_5 = 0
+\end{cases}
+$$
+\end{example}
+
+\begin{theorem}[Rank-Nullity Theorem]
+If $A \in M_{m \times n}(\RR)$, then $n = \rank A + \upsilon(A)$,
+\end{theorem}

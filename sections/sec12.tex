@@ -1,0 +1,109 @@
+\newpage
+\section{Matrix of Linear Transformations}
+\begin{definition}
+Let $V$ be a finite-dimensional vector space. An \textbf{ordered basis} for $V$ such that the order in which the elements are listed is taken into account.
+\end{definition}
+
+\begin{example}
+In $\RR^3$, $B_1 = \{e_1, e_2, e_3\}$ and $B_2 = \{e_3, e_1, e_2\}$ are equal sets, but not ordered bases.
+\end{example}
+
+\begin{example}
+Let $V = \RR^2$ with ordered bases
+$$B_1 = \{(1, 0), (0, 1)\}$$
+$$B_2 = \{(0, 1), (1, 0)\}$$
+$$B_3 = \{(1, 2), (3, 5)\}$$
+\begin{enumerate}
+    \item If $v = (-2, 5)$, find $[v]_{B_i}$, $i \in \{1, 2, 3\}$
+
+    \textit{Solution.} 
+    \leavevmode
+    \begin{itemize}
+        \item $v = (-2, 5) = -2(1, 0) + 5(0, 1)$
+        $$[v]_{B_1} = \bmat{-2 \\ 5}$$
+        $$[v]_{B_2} = \bmat{5 \\ -2}$$
+
+        \item To find $[v]_{B_3}$,
+        $$v = (-2, 5) = x(1, 2) + y(3, 5) = (x + 3y, 2x + 5y)$$
+        $$\begin{amatrix}{2}
+            1 & 3 & -2 \\
+            2 & 5 & 5 \\
+        \end{amatrix} \xrightarrow{\text{RREF}} 
+        \begin{amatrix}{2}
+            1 & 0 & 25 \\
+            0 & 1 & -9 \\
+        \end{amatrix}$$
+        $$[v]_{B_3} = \bmat{25 \\ -9}$$
+    \end{itemize}
+
+    \item If $w \in \RR^2$ such that $[w]_{B_3} = \bmat{-1 \\ 3}$, find $w$.
+
+    \textit{Solution.} 
+    $$w = -1(1, 2) + 3(3, 5) = \boxed{(8, 13)}$$
+\end{enumerate}
+\end{example}
+
+\begin{definition}
+Let $U$ and $V$ be vector spaces with respective ordered bases
+$$B_U = \{u_1, u_2, \dots, u_n\}$$
+$$B_V = \{v_1, v_2, \dots, v_m\}$$
+If $T: U \to V$ is a linear transformation, the \textbf{matrix representation of $T$ with respect to $B_U$ and $B_V$} is
+$$[T]_{B_U}^{B_V} = \bmat{[T(u_1)]_{B_V} & [T(u_2)]_{B_V} & \cdots & [T(u_n)]_{B_V}} \in M_{m \times n}(\RR)$$
+\end{definition}
+
+\begin{example}
+Let $V$ be a $3$-dimensional vector space with ordered basis $B = \{v_1, v_2, v_3\}$. If $\id_V: V \to V$ is the identity linear transformation, find $[\id_V]_B^B$.
+
+\textit{Solution.} 
+\begin{align*}
+[\id_V]_B^B &= \bmat{[\id_V(v_1)]_B & [\id_V(v_2)]_B & [\id_V(v_3)]_B} \\
+&=\bmat{[v_1]_B & [v_2]_B & [v_3]_B}
+\end{align*}
+\end{example}
+
+\newpage
+Then we must find the values in $B$ under $\id_V$,
+\begin{align*}
+v_1 &= 1v_1 + 0v_2 + 0v_3 \\
+v_2 &= 0v_1 + 1v_2 + 0v_3 \\
+v_3 &= 0v_1 + 0v_2 + 1v_3
+\end{align*}
+$$\therefore [\id_V]_B^B = \bmat{1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1}$$
+
+\begin{example}
+Let $B_2 = \{(1, 3), (-2, 4)\}$ and $B_3 = \{(1, 1, 1), (2, 2, 0),(3,0,0)\}$ be the ordered bases for $\RR^2$ and $\RR^3$ respectively. If $T: \RR^2 \to \RR^3$ is the linear transformation given by
+$$T(x, y) = (x + 2y, -x, 0)$$
+Find $[T]_{B_2}^{B_3}$.
+\end{example}
+
+\begin{remark}
+Let $U$ and $V$ be finite-dimensional vector spaces with respective ordered bases $B_U = \{u_1, u_2, \dots, u_n\}$ and $B_V = \{v_1, v_2, \dots, v_m\}$ and $T: U \to V$ be e linear transformation. To find $[T]_{B_U}^{B_V}$:
+\begin{enumerate}
+    \item Find $T(u_1), T(u_2), \dots, T(u_n)$
+    \item Form the augmented matrix
+    $$X = [B_V \mid T(B_U)] = \bmat{v_1 & v_2 & \cdots & v_n & \vline & T(u_1) & T(u_2) & \cdots & T(u_n)}$$
+    \item Use elementary row operations to transform $X$ into the matrix $[I_n \mid M]$. Then $M = [T]_{B_U}^{B_V}$.
+\end{enumerate}
+\end{remark}
+
+\begin{theorem}
+Let $U$ and $V$ be finite-dimensional vector spaces with ordered bases $B_U$ and $B_V$, respectively. If $T: U \to V$ is a linear transformation and $u \in U$, then
+$$[T(u)]_{B_V} = [T]_{B_U}^{B_V}[u]_{B_U}$$
+\end{theorem}
+
+\begin{example}
+Consider the ordered bases $B = \{(1, 0, 0), (0, 1, 0), (0, 0, 1)\}$ and $C = \{x^2, x, 1\}$ for $\mathbb{R}^3$ and $P_2$, respectively. If $T : \mathbb{R}^3 \to P_2$ is the linear transformation such that
+$$[T]_B^C = \bmat{0 & 1 & 1 \\ 1 & 0 & 1 \\ 1 & 1 & 0}$$
+determine $T(a, b, c)$ for all $(a, b, c) \in \RR^3$.
+\end{example}
+
+\textit{Solution.} Let $u = (a, b, c) \in \RR^3$. Then
+$$[T(a, b, c)]_C = [T]_B^C[(a, b, c)]_B = \bmat{0 & 1 & 1 \\ 1 & 0 & 1 \\ 1 & 1 & 0}\bmat{a \\ b \\ c} = \bmat{b + c \\ a + c \\ a + b}$$
+Therefore, $T(a, b, c) = (b + c)x^2 + (a + c)x + (a + b)$ for all $a,b,c \in \RR$.
+
+\begin{theorem}
+Let $U, V$, and $W$ be finite-dimensional vector spaces with respective ordered bases $B_U, B_V$, and $B_W$. If $T: U \to V$ and $S: V \to W$ are linear transformations, then
+\begin{enumerate}
+    \item $[S \circ T]_{B_U}^{B_W} = [S]_{B_V}^{B_W}[T]_{B_U}^{B_V}$
+\end{enumerate}
+\end{theorem}
